@@ -1,0 +1,60 @@
+[
+  {
+    "context": "Editor && VimControl && !VimWaiting && !menu",
+    "bindings": {
+      // put key-bindings here if you want them to work in normal & visual mode
+    }
+  },
+  {
+    "context": "Terminal",
+    "bindings": {
+      "escape": ["workspace::ActivatePane", 0],
+      "cmd-l": "workspace::ToggleLeftDock"
+    }
+  },
+  {
+    "context": "ProjectPanel",
+    "bindings": {
+      "g e": "workspace::ToggleRightDock"
+    }
+  },
+  {
+    "context": "Editor && vim_mode == normal && !VimWaiting && !menu",
+    "bindings": {
+      "tab": "pane::ActivateNextItem",
+      "g e": "project_panel::ToggleFocus",
+      "shift-tab": "pane::ActivatePrevItem",
+      "shift-l": "vim::EndOfLine",
+      "shift-h": "vim::StartOfLine",
+      "g c c": "editor::ToggleComments",
+      "g b": "branches::OpenRecent",
+      "g t space": "terminal_panel::ToggleFocus",
+      "g t t": "workspace::NewTerminal",
+      "g t c": "workspace::NewCenterTerminal",
+      "space r": "workspace::OpenTerminal",
+      "space j": "assistant::ToggleFocus",
+      "space t": "task::Spawn",
+      "cmd-g": "editor::ToggleCodeActions",
+      "cmd-l": "workspace::ToggleLeftDock"
+    }
+  },
+  {
+    "context": "Editor && vim_mode == visual && !VimWaiting && !menu",
+    "bindings": {
+      "shift-l": "vim::EndOfLine",
+      "shift-h": "vim::StartOfLine",
+      "tab": "editor::Tab",
+      "shift-tab": "editor::TabPrev",
+      "g c": "editor::ToggleComments"
+      // visual, visual line & visual block modes
+    }
+  },
+  {
+    "context": "Editor && vim_mode == insert && !menu",
+    "bindings": {
+      "j k": ["vim::SwitchMode", "Normal"],
+      "cmd-g": "editor::ShowCompletions"
+      // put key-bindings here if you want them to work in insert mode
+    }
+  }
+]
