@@ -1,4 +1,4 @@
-# darwin-rebuild switch --flake .#malyiy
+# darwin-rebuild switch --flake nix-darwin.#malyiy
 {
 		description = "Malyiy nix-darwin system flake";
 
@@ -29,6 +29,7 @@
 						pkgs.eza
 						pkgs.docker
 						pkgs.gh
+						pkgs.zoxide
 				];
 
 				# nixpkgs.config.allowUnfreePredicate =

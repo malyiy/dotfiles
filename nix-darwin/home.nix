@@ -46,7 +46,8 @@
     # # the Nix store. Activating the configuration will then make '~/.screenrc' a
     # # symlink to the Nix store copy.
     # ".screenrc".source = dotfiles/screenrc;
-    ".config/nix-darwin".source = ~/dotfiles/nix;
+    
+    # ".config/nix-darwin".source = ~/dotfiles/nix;
     ".config/zed".source = ~/dotfiles/zed;
 
 
