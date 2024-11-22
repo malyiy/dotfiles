@@ -34,6 +34,7 @@
 						pkgs.rbenv
 						pkgs.cocoapods
 						pkgs.bat
+						pkgs.loopwm
 				];
 
 				# nixpkgs.config.allowUnfreePredicate =
