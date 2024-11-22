@@ -48,7 +48,10 @@
     # ".screenrc".source = dotfiles/screenrc;
     
     # ".config/nix-darwin".source = ~/dotfiles/nix;
-    ".config/zed".source = ~/dotfiles/zed;
+    ".config/zed" = {
+	source = config.lib.file.mkOutOfStoreSymlink ~/dotfiles/zed;
+	recursive = true;
+    };
     ".zprofile".source = ~/dotfiles/zprofile/.zprofile;
     ".phoenix".source = ~/dotfiles/phoenix/.phoenix;
 
