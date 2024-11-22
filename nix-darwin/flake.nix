@@ -30,6 +30,10 @@
 						pkgs.docker
 						pkgs.gh
 						pkgs.zoxide
+						pkgs.yarn
+						pkgs.rbenv
+						pkgs.cocoapods
+						pkgs.bat
 				];
 
 				# nixpkgs.config.allowUnfreePredicate =
