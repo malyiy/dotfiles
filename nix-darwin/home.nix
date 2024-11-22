@@ -49,6 +49,8 @@
     
     # ".config/nix-darwin".source = ~/dotfiles/nix;
     ".config/zed".source = ~/dotfiles/zed;
+    ".zprofile".source = ~/dotfiles/zprofile/.zprofile;
+    ".phoenix".source = ~/dotfiles/phoenix/.phoenix;
 
 
     # # You can also set the file content immediately.

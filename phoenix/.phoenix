@@ -1,0 +1,47 @@
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# Aliases
+
+# Nix
+alias drebuild="darwin-rebuild switch --flake ~/dotfiles/nix-darwin#malyiy --impure";
+
+# Movement
+alias l="eza -a --tree --level=1 --icons=always --no-time --no-user --no-permissions"
+alias ll="eza -a --tree --level=2 --icons=always --no-time --no-user --no-permissions"
+alias lll="eza -a --tree --level=3 --icons=always --no-time --no-user --no-permissions"
+
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+
+alias cd="z"
+
+# Programs
+alias v="nvim"
+
+# Project related
+alias pi="cd ios && pod install && cd .."
+alias yi='yarn run ios --simulator="iPhone 15 Pro"'
+alias yarni='yarn install --frozen-lockfile'
+
+
+
+export PATH="$PATH:/usr/local/bin"
+
+# Added by Toolbox App
+export PATH="$PATH:/Users/malyiy/Library/Application Support/JetBrains/Toolbox/scripts"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+
+export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+
+export ESLINT_USE_FLAT_CONFIG=true
+export REACT_EDITOR=zed
+
