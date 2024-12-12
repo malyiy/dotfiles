@@ -67,7 +67,7 @@
     "diagnostics": true,
     "metrics": true
   },
-  "cursor_blink": true,
+  "cursor_blink": false,
   "relative_line_numbers": true,
   "chat_panel": {
     "button": false

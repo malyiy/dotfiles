@@ -18,6 +18,8 @@
 				# List packages installed in system profile. To search by name, run:
 				# $ nix-env -qaP | grep wget
 
+				nixpkgs.config.allowUnfree = true;
+
 				home-manager.backupFileExtension = "backup";
 
 				environment.systemPackages = [
@@ -36,6 +38,10 @@
 						pkgs.bat
 						pkgs.loopwm
 						pkgs.mkalias
+						pkgs.eslint
+						pkgs.python310
+						pkgs.warp-terminal
+						pkgs.obsidian
 				];
 
 				# nixpkgs.config.allowUnfreePredicate =
