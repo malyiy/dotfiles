@@ -49,8 +49,12 @@
     
     # ".config/nix-darwin".source = ~/dotfiles/nix;
     ".config/zed" = {
-	source = config.lib.file.mkOutOfStoreSymlink ~/dotfiles/zed;
-	recursive = true;
+	    source = config.lib.file.mkOutOfStoreSymlink ~/dotfiles/zed;
+	    recursive = true;
+    };
+    ".config/lvim" = {
+	    source = config.lib.file.mkOutOfStoreSymlink ~/dotfiles/lvim;
+	    recursive = true;
     };
     ".zprofile".source = ~/dotfiles/zprofile/.zprofile;
     ".phoenix".source = ~/dotfiles/phoenix/.phoenix;

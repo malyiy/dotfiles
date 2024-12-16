@@ -42,6 +42,8 @@
 						pkgs.python310
 						pkgs.warp-terminal
 						pkgs.obsidian
+						pkgs.raycast
+						pkgs.lunarvim
 				];
 
 				# nixpkgs.config.allowUnfreePredicate =
@@ -60,9 +62,9 @@
 						onActivation.upgrade = true;
 				};
 
-				fonts.packages = [
-						(pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
-				];
+				# fonts.packages = [
+				# 		(pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+				# ];
 
 				# Auto upgrade nix package and the daemon service.
 				services.nix-daemon.enable = true;
