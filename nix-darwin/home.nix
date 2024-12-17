@@ -57,6 +57,7 @@
 	    recursive = true;
     };
     ".zprofile".source = ~/dotfiles/zprofile/.zprofile;
+    ".gitconfig".source = ~/dotfiles/gitconfig/.gitconfig;
     ".phoenix".source = ~/dotfiles/phoenix/.phoenix;
 
 

@@ -40,7 +40,6 @@
 						pkgs.mkalias
 						pkgs.eslint
 						pkgs.python310
-						pkgs.warp-terminal
 						pkgs.obsidian
 						pkgs.raycast
 						pkgs.lunarvim
@@ -57,6 +56,7 @@
 						casks = [
 								"zed"
 								"linearmouse"
+                "warp"
 						];
 						onActivation.cleanup = "zap";
 						onActivation.autoUpdate = true;
