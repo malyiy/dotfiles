@@ -20,7 +20,6 @@
   {
     "context": "Editor && vim_mode == normal && !VimWaiting && !menu",
     "bindings": {
-      "escape": "workspace::ToggleRightDock",
       "tab": "pane::ActivateNextItem",
       "g e": "project_panel::ToggleFocus",
       "shift-tab": "pane::ActivatePrevItem",
