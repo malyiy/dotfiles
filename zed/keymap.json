@@ -8,19 +8,19 @@
   {
     "context": "Terminal",
     "bindings": {
-      "escape": ["workspace::ActivatePane", 0],
-      "cmd-l": "workspace::ToggleLeftDock"
+      "escape": "workspace::ToggleLeftDock"
     }
   },
   {
     "context": "ProjectPanel",
     "bindings": {
-      "g e": "workspace::ToggleRightDock"
+      "escape": "workspace::ToggleRightDock"
     }
   },
   {
     "context": "Editor && vim_mode == normal && !VimWaiting && !menu",
     "bindings": {
+      "escape": "workspace::ToggleRightDock",
       "tab": "pane::ActivateNextItem",
       "g e": "project_panel::ToggleFocus",
       "shift-tab": "pane::ActivatePrevItem",

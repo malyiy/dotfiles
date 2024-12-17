@@ -44,6 +44,7 @@
 						pkgs.raycast
 						pkgs.lunarvim
             pkgs.delta
+            pkgs.watchman
 				];
 
 				# nixpkgs.config.allowUnfreePredicate =
