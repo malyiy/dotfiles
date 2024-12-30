@@ -45,6 +45,8 @@
 						pkgs.lunarvim
             pkgs.delta
             pkgs.watchman
+            pkgs.ios-deploy
+            pkgs.utm
 				];
 
 				# nixpkgs.config.allowUnfreePredicate =

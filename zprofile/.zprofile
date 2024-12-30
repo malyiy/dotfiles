@@ -1,11 +1,10 @@
-
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
-# Added by Toolbox App
-export PATH="$PATH:/Users/malyiy/Library/Application Support/JetBrains/Toolbox/scripts"
-export PATH="$PATH:/Users/malyiy/.local/bin"
+export PATH="$PATH:/Users/$(whoami)/.local/bin"
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+
+export PATH="$PATH:/usr/local/bin"
 
 export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 export ANDROID_HOME=$HOME/Library/Android/sdk
@@ -13,9 +12,6 @@ export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
-
-# Added by Toolbox App
-export PATH="$PATH:/Users/malyiy/Library/Application Support/JetBrains/Toolbox/scripts"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

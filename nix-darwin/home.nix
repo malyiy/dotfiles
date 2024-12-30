@@ -59,6 +59,7 @@
     ".zprofile".source = ~/dotfiles/zprofile/.zprofile;
     ".gitconfig".source = ~/dotfiles/gitconfig/.gitconfig;
     ".phoenix".source = ~/dotfiles/phoenix/.phoenix;
+    "utils".source = ~/dotfiles/utils;
 
 
     # # You can also set the file content immediately.
