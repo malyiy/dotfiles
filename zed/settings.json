@@ -32,6 +32,7 @@
   "buffer_font_family": "JetBrains Mono NL",
   "vim_mode": true,
   // Language specific settings
+  "lsp_highlight_debounce": 5,
   "languages": {
     "JavaScript": {
       "code_actions_on_format": {
