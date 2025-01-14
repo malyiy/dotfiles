@@ -1,0 +1,7 @@
+{
+  "Log to the console": {
+    "prefix": "sho",
+    "body": ["console.log('🚀 LOG for $0 🚀:', $0, '❗');"],
+    "description": "Log to the console"
+  }
+}

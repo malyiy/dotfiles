@@ -7,9 +7,9 @@ alias drebuild="darwin-rebuild switch --flake ~/dotfiles/nix-darwin#malyiy --imp
 alias nix-update="nix flake update"
 
 ## Movement
-alias l="eza -a --tree --level=1 --icons=always --no-time --no-user --no-permissions"
-alias ll="eza -a --tree --level=2 --icons=always --no-time --no-user --no-permissions"
-alias lll="eza -a --tree --level=3 --icons=always --no-time --no-user --no-permissions"
+alias l="eza -a -l -h --tree --level=1 --icons=always --no-user"
+alias ll="eza -a -l --tree --level=2 --icons=always --no-user --no-permissions --no-filesize"
+alias lll="eza -a -l --tree --level=2 --icons=always --no-user --no-permissions --no-filesize"
 
 alias ..="cd .."
 alias ...="cd ../.."

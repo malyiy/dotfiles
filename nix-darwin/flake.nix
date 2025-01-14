@@ -47,6 +47,7 @@
             pkgs.watchman
             pkgs.ios-deploy
             pkgs.utm
+            pkgs.speedtest-cli
 				];
 
 				# nixpkgs.config.allowUnfreePredicate =
@@ -60,6 +61,7 @@
 								"zed"
 								"linearmouse"
                 "warp"
+                "ollama"
 						];
 						onActivation.cleanup = "zap";
 						onActivation.autoUpdate = true;
