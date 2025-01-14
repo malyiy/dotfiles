@@ -8,7 +8,7 @@ alias nix-update="nix flake update"
 
 ## Movement
 alias l="eza -a -l -h --tree --level=1 --icons=always --no-user"
-alias lt="eza -a -l -h --tree --level=1 --icons=always --no-user -total-size"
+alias lt="eza -a -l -h --tree --level=1 --icons=always --no-user --total-size"
 alias ll="eza -a -l --tree --level=2 --icons=always --no-user --no-permissions --no-filesize"
 alias lll="eza -a -l --tree --level=2 --icons=always --no-user --no-permissions --no-filesize"
 
