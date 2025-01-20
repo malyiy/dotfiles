@@ -48,6 +48,7 @@
             pkgs.ios-deploy
             pkgs.utm
             pkgs.speedtest-cli
+            pkgs.ffmpeg
 				];
 
 				# nixpkgs.config.allowUnfreePredicate =
@@ -62,6 +63,7 @@
 								"linearmouse"
                 "warp"
                 "ollama"
+                "docker"
 						];
 						onActivation.cleanup = "zap";
 						onActivation.autoUpdate = true;

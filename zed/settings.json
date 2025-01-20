@@ -11,7 +11,7 @@
   "language_models": {
     "ollama": {}
   },
-  "theme": "One Dark",
+  "theme": "Warp One Dark",
   "assistant": {
     "default_model": {
       "provider": "zed.dev",
