@@ -21,6 +21,7 @@ alias cd="z"
 ## Programs
 alias v="nvim"
 alias lv="lvim"
+alias lg="lazygit"
 
 ## Utils
 alias yrid="~/utils/build-react-native-for-my-iphone.sh"

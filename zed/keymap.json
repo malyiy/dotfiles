@@ -8,13 +8,13 @@
   {
     "context": "Terminal",
     "bindings": {
-      "escape": "workspace::ToggleLeftDock"
+      "cmd-escape": "workspace::ToggleLeftDock"
     }
   },
   {
     "context": "ProjectPanel",
     "bindings": {
-      "escape": "workspace::ToggleRightDock"
+      "cmd-escape": "workspace::ToggleRightDock"
     }
   },
   {
