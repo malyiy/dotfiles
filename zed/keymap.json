@@ -30,7 +30,6 @@
       "g t space": "terminal_panel::ToggleFocus",
       "g t t": "workspace::NewTerminal",
       "g t c": "workspace::NewCenterTerminal",
-      "space r": "workspace::OpenTerminal",
       "space j": "assistant::ToggleFocus",
       "space t": "task::Spawn",
       "cmd-g": "editor::ToggleCodeActions",
@@ -43,8 +42,7 @@
       "shift-l": "vim::EndOfLine",
       "shift-h": "vim::StartOfLine",
       "tab": "editor::Tab",
-      "shift-tab": "editor::TabPrev",
-      "g c": "editor::ToggleComments"
+      "shift-tab": "editor::TabPrev"
       // visual, visual line & visual block modes
     }
   },
