@@ -49,6 +49,7 @@
             pkgs.utm
             pkgs.speedtest-cli
             pkgs.ffmpeg
+            pkgs.vscode
 				];
 
 				# nixpkgs.config.allowUnfreePredicate =
