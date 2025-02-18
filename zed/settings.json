@@ -8,6 +8,7 @@
 // from the command palette or from Zed application menu.
 {
   // Quick settings
+  "icon_theme": "Material Icon Theme",
   "language_models": {
     "ollama": {}
   },

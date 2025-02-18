@@ -1,11 +1,11 @@
 #!/bin/bash
 
-# Get the device ID of "Kirill's iPhone"
-device_id=$(xcrun xctrace list devices | grep "Kirill’s iPhone" | sed -E 's/.*\(([A-F0-9-]+)\)$/\1/')
+# Get the device ID of "Xiaomi Redmi 3A"
+device_id=$(xcrun xctrace list devices | grep "Xiaomi Redmi 3A" | sed -E 's/.*\(([A-F0-9-]+)\)$/\1/')
 
 # Check if a device ID was found
 if [ -z "$device_id" ]; then
-  echo "Error: Could not find device ID for Kirill's iPhone."
+  echo "Error: Could not find device ID for Xiaomi Redmi 3A."
   exit 1
 fi
 
