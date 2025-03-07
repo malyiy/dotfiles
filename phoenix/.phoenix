@@ -16,8 +16,6 @@ alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 
-alias cd="z"
-
 ## Programs
 alias v="nvim"
 alias lv="lvim"
