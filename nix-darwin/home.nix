@@ -46,20 +46,20 @@
     # # the Nix store. Activating the configuration will then make '~/.screenrc' a
     # # symlink to the Nix store copy.
     # ".screenrc".source = dotfiles/screenrc;
-    
+
     # ".config/nix-darwin".source = ~/dotfiles/nix;
     ".config/zed" = {
-	    source = config.lib.file.mkOutOfStoreSymlink ~/dotfiles/zed;
+	    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/zed";
 	    recursive = true;
     };
     ".config/lvim" = {
-	    source = config.lib.file.mkOutOfStoreSymlink ~/dotfiles/lvim;
+	    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/lvim";
 	    recursive = true;
     };
-    ".zprofile".source = ~/dotfiles/zprofile/.zprofile;
-    ".gitconfig".source = ~/dotfiles/gitconfig/.gitconfig;
-    ".phoenix".source = ~/dotfiles/phoenix/.phoenix;
-    "utils".source = ~/dotfiles/utils;
+    ".zprofile".source = "${config.home.homeDirectory}/dotfiles/zprofile/.zprofile";
+    ".gitconfig".source = "${config.home.homeDirectory}/dotfiles/gitconfig/.gitconfig";
+    ".phoenix".source = "${config.home.homeDirectory}/dotfiles/phoenix/.phoenix";
+    "utils".source = "${config.home.homeDirectory}/dotfiles/utils";
 
 
     # # You can also set the file content immediately.

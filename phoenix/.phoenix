@@ -3,7 +3,7 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 # Aliases
 
 ## Nix
-alias drebuild="darwin-rebuild switch --flake ~/dotfiles/nix-darwin#malyiy --impure";
+alias drebuild="sudo darwin-rebuild switch --flake ~/dotfiles/nix-darwin#malyiy --impure";
 alias nix-update="nix flake update"
 
 ## Movement

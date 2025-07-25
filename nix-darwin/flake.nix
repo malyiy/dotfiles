@@ -49,6 +49,8 @@
             pkgs.utm
             pkgs.speedtest-cli
             pkgs.ffmpeg
+            pkgs.btop
+            pkgs.stats
 				];
 
 				# nixpkgs.config.allowUnfreePredicate =
@@ -80,6 +82,8 @@
 
 				# Necessary for using flakes on this system.
 				nix.settings.experimental-features = "nix-command flakes";
+
+        system.primaryUser = "malyiy";
 
 				# Enable alternative shell support in nix-darwin.
 				# programs.fish.enable = true;
