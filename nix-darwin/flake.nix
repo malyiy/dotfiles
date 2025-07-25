@@ -39,7 +39,8 @@
 						pkgs.loopwm
 						pkgs.mkalias
 						pkgs.eslint
-						pkgs.python310
+						pkgs.python313
+            pkgs.python313Packages.pip
 						pkgs.obsidian
 						pkgs.raycast
 						pkgs.lunarvim

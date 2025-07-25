@@ -24,5 +24,7 @@ alias activate_super_power='source ~/config/.phoenix'
 alias persist_super_power='echo "source ~/config/.phoenix" >> ~/.zprofile'
 
 source ~/.phoenix
+ 
+export LM_STUDIO_API_KEY=dummy-api-key
 
 eval "$(zoxide init zsh)"
