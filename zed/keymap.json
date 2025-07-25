@@ -22,7 +22,7 @@
     "bindings": {
       "tab": "pane::ActivateNextItem",
       "g e": "project_panel::ToggleFocus",
-      "shift-tab": "pane::ActivatePrevItem",
+      "shift-tab": "pane::ActivatePreviousItem",
       "shift-l": "vim::EndOfLine",
       "shift-h": "vim::StartOfLine",
       "g c c": "editor::ToggleComments",
@@ -34,6 +34,10 @@
       "space t": "task::Spawn",
       "cmd-g": "editor::ToggleCodeActions",
       "cmd-l": "workspace::ToggleLeftDock"
+      // "j": "vim::Left",
+      // "l": "vim::Right",
+      // "k": "vim::Down",
+      // "h": "vim::Up"
     }
   },
   {
@@ -42,14 +46,18 @@
       "shift-l": "vim::EndOfLine",
       "shift-h": "vim::StartOfLine",
       "tab": "editor::Tab",
-      "shift-tab": "editor::TabPrev"
+      "shift-tab": "editor::Backtab"
+      // "j": "vim::Left",
+      // "l": "vim::Right",
+      // "k": "vim::Down",
+      // "h": "vim::Up"
       // visual, visual line & visual block modes
     }
   },
   {
     "context": "Editor && vim_mode == insert && !menu",
     "bindings": {
-      "j k": ["vim::SwitchMode", "Normal"],
+      "j k": "vim::SwitchToNormalMode",
       "cmd-g": "editor::ShowCompletions"
       // put key-bindings here if you want them to work in insert mode
     }

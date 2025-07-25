@@ -13,12 +13,16 @@
     "ollama": {}
   },
   "theme": "Warp One Dark",
-  "assistant": {
-    "default_model": {
+  "agent": {
+    "default_profile": "ask",
+    "inline_assistant_model": {
       "provider": "zed.dev",
-      "model": "claude-3-7-sonnet-latest"
+      "model": "claude-sonnet-4"
     },
-    "version": "2",
+    "default_model": {
+      "provider": "lmstudio",
+      "model": "qwen/qwen3-8b"
+    },
     "provider": null
   },
   "project_panel": {
@@ -34,7 +38,7 @@
   "vim_mode": true,
 
   "features": {
-    "inline_completion_provider": "zed"
+    "edit_prediction_provider": "zed"
   },
 
   // Language specific settings
