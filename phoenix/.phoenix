@@ -18,7 +18,6 @@ alias ....="cd ../../.."
 
 ## Programs
 alias v="nvim"
-alias lv="lvim"
 alias lg="lazygit"
 
 ## Utils

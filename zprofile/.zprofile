@@ -25,6 +25,10 @@ alias persist_super_power='echo "source ~/config/.phoenix" >> ~/.zprofile'
 
 source ~/.phoenix
  
-export LM_STUDIO_API_KEY=dummy-api-key
+export LM_STUDIO_API_KEY=whatever
+# export LM_STUDIO_API_BASE=http://localhost:1234/v1
+export LM_STUDIO_API_BASE=http://127.0.0.1:1234/v1
+
+export PATH=~/.npm-global/bin:$PATH
 
 eval "$(zoxide init zsh)"

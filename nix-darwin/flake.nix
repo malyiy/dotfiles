@@ -39,11 +39,9 @@
 						pkgs.loopwm
 						pkgs.mkalias
 						pkgs.eslint
-						pkgs.python313
-            pkgs.python313Packages.pip
+						pkgs.python311
 						pkgs.obsidian
 						pkgs.raycast
-						pkgs.lunarvim
             pkgs.delta
             pkgs.watchman
             pkgs.ios-deploy
@@ -52,6 +50,7 @@
             pkgs.ffmpeg
             pkgs.btop
             pkgs.stats
+            pkgs.ripgrep 
 				];
 
 				# nixpkgs.config.allowUnfreePredicate =

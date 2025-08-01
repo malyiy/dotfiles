@@ -6,34 +6,16 @@
     }
   },
   {
-    "context": "Terminal",
-    "bindings": {
-      "cmd-escape": "workspace::ToggleLeftDock"
-    }
-  },
-  {
-    "context": "ProjectPanel",
-    "bindings": {
-      "cmd-escape": "workspace::ToggleRightDock"
-    }
-  },
-  {
     "context": "Editor && vim_mode == normal && !VimWaiting && !menu",
     "bindings": {
-      "tab": "pane::ActivateNextItem",
+      "shift-l": "pane::ActivateNextItem",
+      "shift-h": "pane::ActivatePreviousItem",
       "g e": "project_panel::ToggleFocus",
-      "shift-tab": "pane::ActivatePreviousItem",
-      "shift-l": "vim::EndOfLine",
-      "shift-h": "vim::StartOfLine",
       "g c c": "editor::ToggleComments",
       "g b": "branches::OpenRecent",
-      "g t space": "terminal_panel::ToggleFocus",
-      "g t t": "workspace::NewTerminal",
-      "g t c": "workspace::NewCenterTerminal",
       "space j": "assistant::ToggleFocus",
       "space t": "task::Spawn",
       "cmd-g": "editor::ToggleCodeActions",
-      "cmd-l": "workspace::ToggleLeftDock"
       // "j": "vim::Left",
       // "l": "vim::Right",
       // "k": "vim::Down",
@@ -57,7 +39,6 @@
   {
     "context": "Editor && vim_mode == insert && !menu",
     "bindings": {
-      "j k": "vim::SwitchToNormalMode",
       "cmd-g": "editor::ShowCompletions"
       // put key-bindings here if you want them to work in insert mode
     }

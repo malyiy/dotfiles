@@ -56,6 +56,10 @@
 	    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/lvim";
 	    recursive = true;
     };
+    ".config/nvim" = {
+	    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/nvim";
+	    recursive = true;
+    };
     ".zprofile".source = "${config.home.homeDirectory}/dotfiles/zprofile/.zprofile";
     ".gitconfig".source = "${config.home.homeDirectory}/dotfiles/gitconfig/.gitconfig";
     ".phoenix".source = "${config.home.homeDirectory}/dotfiles/phoenix/.phoenix";
