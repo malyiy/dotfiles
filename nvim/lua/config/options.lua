@@ -5,3 +5,9 @@
 local opt = vim.opt
 
 opt.expandtab = false
+
+-- Force mini.icons to use nerd font icons
+vim.g.have_nerd_font = true
+
+-- Use login shell for terminal to load shell configs
+opt.shell = "/bin/zsh -l"

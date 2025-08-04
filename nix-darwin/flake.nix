@@ -43,6 +43,7 @@
 						pkgs.obsidian
 						pkgs.raycast
             pkgs.delta
+            pkgs.less
             pkgs.watchman
             pkgs.ios-deploy
             pkgs.utm
@@ -72,9 +73,9 @@
 						onActivation.upgrade = true;
 				};
 
-				# fonts.packages = [
-				# 		(pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
-				# ];
+				fonts.packages = [
+						pkgs.nerd-fonts.jetbrains-mono
+				];
 
 				# Auto upgrade nix package and the daemon service.
 				nix.enable = true;

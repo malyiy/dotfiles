@@ -60,6 +60,10 @@
 	    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/nvim";
 	    recursive = true;
     };
+    ".config/lazygit" = {
+	    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/lazygit";
+	    recursive = true;
+    };
     ".zprofile".source = "${config.home.homeDirectory}/dotfiles/zprofile/.zprofile";
     ".gitconfig".source = "${config.home.homeDirectory}/dotfiles/gitconfig/.gitconfig";
     ".phoenix".source = "${config.home.homeDirectory}/dotfiles/phoenix/.phoenix";
