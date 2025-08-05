@@ -52,6 +52,7 @@
             pkgs.btop
             pkgs.stats
             pkgs.ripgrep 
+	    pkgs.wget
 				];
 
 				# nixpkgs.config.allowUnfreePredicate =
