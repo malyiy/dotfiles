@@ -42,5 +42,11 @@
       "cmd-g": "editor::ShowCompletions"
       // put key-bindings here if you want them to work in insert mode
     }
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "cmd-b": null
+    }
   }
 ]
