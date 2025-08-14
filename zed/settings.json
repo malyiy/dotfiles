@@ -15,12 +15,12 @@
   "show_whitespaces": "all",
 
   // Fonts
-  "ui_font_family": "JetBrains Mono NL",
+  "ui_font_family": "JetBrainsMonoNL Nerd Font",
   "ui_font_size": 15,
   "ui_font_weight": 600,
-  "buffer_font_family": "JetBrains Mono NL",
+  "buffer_font_family": "JetBrainsMonoNL Nerd Font",
   "buffer_font_size": 12,
-  "buffer_font_weight": 600,
+  "buffer_font_weight": 620,
 
   // Editor Behavior
   "base_keymap": "JetBrains",
@@ -92,7 +92,7 @@
   "terminal": {
     "dock": "left",
     "working_directory": "current_project_directory",
-    "font_family": "JetBrains Mono NL",
+    "font_family": "JetBrainsMonoNL Nerd Font",
     "blinking": "terminal_controlled",
     "copy_on_select": false,
     "detect_venv": {
