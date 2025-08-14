@@ -54,5 +54,11 @@
 		"bindings": {
 			"shift shift": "file_finder::Toggle"
 		}
-	}
+	},
+ {
+   "context": "(VimControl && !menu)",
+   "bindings": {
+     "g r": "editor::FindAllReferences"
+   }
+ }
 ]
