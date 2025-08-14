@@ -7,12 +7,33 @@
 // custom settings, run the open default settings command
 // from the command palette or from Zed application menu.
 {
-  // Quick settings
-  "icon_theme": "Zed (Default)",
+  // Theme & Appearance
+  "theme": "Warp One Dark",
+  "icon_theme": "Colored Zed Icons Theme Dark",
+  "cursor_blink": false,
+  "relative_line_numbers": true,
+  "show_whitespaces": "all",
+
+  // Fonts
+  "ui_font_family": "JetBrains Mono NL",
+  "ui_font_size": 15,
+  "ui_font_weight": 600,
+  "buffer_font_family": "JetBrains Mono NL",
+  "buffer_font_size": 12,
+  "buffer_font_weight": 600,
+
+  // Editor Behavior
+  "base_keymap": "JetBrains",
+  "vim_mode": true,
+  "autosave": "on_focus_change",
+  "confirm_quit": true,
+  "format_on_save": "on",
+  "formatter": "prettier",
+
+  // AI & Language Models
   "language_models": {
     "ollama": {}
   },
-  "theme": "Warp One Dark",
   "agent": {
     "default_profile": "write",
     "inline_assistant_model": {
@@ -22,27 +43,20 @@
     "default_model": {
       "provider": "zed.dev",
       "model": "claude-sonnet-4"
-    },
-    "provider": null
+    }
   },
-  "project_panel": {
-    "dock": "right"
-  },
-  "tabs": { "file_icons": true },
-  "ui_font_family": "JetBrains Mono NL",
-  "ui_font_size": 16,
-  "ui_font_weight": 600,
-  "buffer_font_size": 12,
-  "buffer_font_weight": 635,
-  "buffer_font_family": "JetBrains Mono NL",
-  "vim_mode": true,
-
   "features": {
     "edit_prediction_provider": "zed"
   },
 
-  // Language specific settings
+  // Language Settings
   "lsp_highlight_debounce": 5,
+  "inlay_hints": {
+    "enabled": true,
+    "show_type_hints": false,
+    "show_parameter_hints": false,
+    "show_other_hints": true
+  },
   "languages": {
     "JavaScript": {
       "code_actions_on_format": {
@@ -60,26 +74,12 @@
       }
     }
   },
-  // Base settings
-  "inlay_hints": {
-    "enabled": true,
-    "show_type_hints": false,
-    "show_parameter_hints": false,
-    "show_other_hints": true,
-    "chainingHints": true
+
+  // Panels & UI
+  "tabs": { "file_icons": true },
+  "project_panel": {
+    "dock": "right"
   },
-  "base_keymap": "JetBrains",
-  "autosave": "on_focus_change",
-  "confirm_quit": true,
-  "format_on_save": "on",
-  "formatter": "prettier",
-  "show_whitespaces": "all",
-  "telemetry": {
-    "diagnostics": true,
-    "metrics": true
-  },
-  "cursor_blink": false,
-  "relative_line_numbers": true,
   "chat_panel": {
     "button": "always"
   },
@@ -93,7 +93,6 @@
     "dock": "left",
     "working_directory": "current_project_directory",
     "font_family": "JetBrains Mono NL",
-
     "blinking": "terminal_controlled",
     "copy_on_select": false,
     "detect_venv": {
@@ -108,7 +107,13 @@
     "option_as_meta": false,
     "button": true,
     "toolbar": {
-      "title": true
+      "breadcrumbs": true
     }
+  },
+
+  // Privacy
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false
   }
 }
