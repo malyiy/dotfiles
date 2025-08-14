@@ -1,52 +1,58 @@
 [
-  {
-    "context": "Editor && VimControl && !VimWaiting && !menu",
-    "bindings": {
-      // put key-bindings here if you want them to work in normal & visual mode
-    }
-  },
-  {
-    "context": "Editor && vim_mode == normal && !VimWaiting && !menu",
-    "bindings": {
-      "shift-l": "pane::ActivateNextItem",
-      "shift-h": "pane::ActivatePreviousItem",
-      "g e": "project_panel::ToggleFocus",
-      "g c c": "editor::ToggleComments",
-      "g b": "branches::OpenRecent",
-      "space j": "assistant::ToggleFocus",
-      "space t": "task::Spawn",
-      "cmd-g": "editor::ToggleCodeActions",
-      // "j": "vim::Left",
-      // "l": "vim::Right",
-      // "k": "vim::Down",
-      // "h": "vim::Up"
-    }
-  },
-  {
-    "context": "Editor && vim_mode == visual && !VimWaiting && !menu",
-    "bindings": {
-      "shift-l": "vim::EndOfLine",
-      "shift-h": "vim::StartOfLine",
-      "tab": "editor::Tab",
-      "shift-tab": "editor::Backtab"
-      // "j": "vim::Left",
-      // "l": "vim::Right",
-      // "k": "vim::Down",
-      // "h": "vim::Up"
-      // visual, visual line & visual block modes
-    }
-  },
-  {
-    "context": "Editor && vim_mode == insert && !menu",
-    "bindings": {
-      "cmd-g": "editor::ShowCompletions"
-      // put key-bindings here if you want them to work in insert mode
-    }
-  },
-  {
-    "context": "Editor",
-    "bindings": {
-      "cmd-b": null
-    }
-  }
+	{
+		"context": "Editor && VimControl && !VimWaiting && !menu",
+		"bindings": {
+			// put key-bindings here if you want them to work in normal & visual mode
+		}
+	},
+	{
+		"context": "Editor && vim_mode == normal && !VimWaiting && !menu",
+		"bindings": {
+			"shift-l": "pane::ActivateNextItem",
+			"shift-h": "pane::ActivatePreviousItem",
+			"g e": "project_panel::ToggleFocus",
+			"g c c": "editor::ToggleComments",
+			"g b": "branches::OpenRecent",
+			"space j": "assistant::ToggleFocus",
+			"space t": "task::Spawn",
+			"cmd-g": "editor::ToggleCodeActions",
+			// "j": "vim::Left",
+			// "l": "vim::Right",
+			// "k": "vim::Down",
+			// "h": "vim::Up"
+		}
+	},
+	{
+		"context": "Editor && vim_mode == visual && !VimWaiting && !menu",
+		"bindings": {
+			"shift-l": "vim::EndOfLine",
+			"shift-h": "vim::StartOfLine",
+			"tab": "editor::Tab",
+			"shift-tab": "editor::Backtab"
+			// "j": "vim::Left",
+			// "l": "vim::Right",
+			// "k": "vim::Down",
+			// "h": "vim::Up"
+			// visual, visual line & visual block modes
+		}
+	},
+	{
+		"context": "Editor && vim_mode == insert && !menu",
+		"bindings": {
+			"cmd-g": "editor::ShowCompletions"
+			// put key-bindings here if you want them to work in insert mode
+		}
+	},
+	{
+		"context": "Editor",
+		"bindings": {
+			"cmd-b": null
+		}
+	},
+	{
+		"context": "Workspace",
+		"bindings": {
+			"shift shift": "file_finder::Toggle"
+		}
+	}
 ]
