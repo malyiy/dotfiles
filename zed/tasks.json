@@ -7,13 +7,6 @@
     "shell": "system"
   },
   {
-    "label": "start-debug",
-    "command": "watchman watch-del-all ; yarn start-debug --reset-cache",
-    "reveal": "never",
-    "hide": "on_success",
-    "shell": "system"
-  },
-  {
     "label": "ios",
     "command": "yarn run ios --simulator=\"iPhone 16 Pro\"",
     "reveal": "no_focus",
