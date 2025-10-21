@@ -32,15 +32,12 @@
     }
   },
   {
-    "context": "Editor",
-    "bindings": {
-      "cmd-b": null
-    }
-  },
-  {
     "context": "Workspace",
     "bindings": {
-      "shift shift": "file_finder::Toggle"
+      "shift shift": "file_finder::Toggle",
+      "space r": "workspace::ToggleRightDock",
+      "space b": "workspace::ToggleLeftDock",
+      "space c": "workspace::ToggleBottomDock"
     }
   },
   {
