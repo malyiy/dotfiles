@@ -11,6 +11,7 @@
       "shift-l": "pane::ActivateNextItem",
       "shift-h": "pane::ActivatePreviousItem",
       "g e": "project_panel::ToggleFocus",
+      "g E": "workspace::ToggleRightDock",
       "g c c": "editor::ToggleComments",
       "space j": "agent::ToggleFocus",
       "space t": "task::Spawn",
