@@ -11,9 +11,8 @@
       "shift-l": "pane::ActivateNextItem",
       "shift-h": "pane::ActivatePreviousItem",
       "g e": "project_panel::ToggleFocus",
-      "g E": "workspace::ToggleRightDock",
       "g c c": "editor::ToggleComments",
-      "space j": "agent::ToggleFocus",
+      "space a": "agent::ToggleFocus",
       "space t": "task::Spawn",
       "cmd-g": "editor::ToggleCodeActions"
     }
@@ -32,12 +31,14 @@
     }
   },
   {
-    "context": "Workspace",
+    "context": "(Workspace && !vim_mode) || (Editor && vim_mode == normal)",
     "bindings": {
+      // "a s d k": "dev::OpenKeyContextView",
       "shift shift": "file_finder::Toggle",
-      "space r": "workspace::ToggleRightDock",
-      "space b": "workspace::ToggleLeftDock",
-      "space c": "workspace::ToggleBottomDock"
+      "space l": "workspace::ToggleRightDock",
+      "space h": "workspace::ToggleLeftDock",
+      "space j": "workspace::ToggleBottomDock",
+      "space x": "workspace::CloseAllDocks"
     }
   },
   {
