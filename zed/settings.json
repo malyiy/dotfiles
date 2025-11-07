@@ -42,6 +42,7 @@
     "ollama": {}
   },
   "agent": {
+    "play_sound_when_agent_done": true,
     "use_modifier_to_send": true,
     "default_profile": "write",
     "inline_assistant_model": {

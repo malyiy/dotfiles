@@ -31,7 +31,7 @@
     }
   },
   {
-    "context": "(Workspace && !vim_mode) || (Editor && vim_mode == normal)",
+    "context": "((Workspace && !vim_mode) || (Editor && vim_mode == normal)) && !CommandPalette && !FileFinder",
     "bindings": {
       // "a s d k": "dev::OpenKeyContextView",
       "shift shift": "file_finder::Toggle",
@@ -45,6 +45,13 @@
     "context": "(VimControl && !menu)",
     "bindings": {
       "g r": "editor::FindAllReferences"
+    }
+  },
+  {
+    "context": "vim_mode == normal || vim_mode == visual",
+    "bindings": {
+      "s": "vim::PushSneak",
+      "shift-s": "vim::PushSneakBackward"
     }
   }
 ]
