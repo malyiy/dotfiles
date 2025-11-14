@@ -1,0 +1,4 @@
+--target=~/.config
+--ignore=.stowrc
+--ignore=i.brew.packages
+--ignore=DS_Store
