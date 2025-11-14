@@ -1,55 +1,101 @@
 #!/bin/bash
 
 # Brew install with tracking
-# Usage: bi <package-name>
+# Usage:
+#   bi              - Install all packages from i.brew.packages
+#   bi <package>    - Install a specific package and add to i.brew.packages
 
-if [ -z "$1" ]; then
-    echo "Usage: bi <package-name>"
-    exit 1
-fi
-
-package="$1"
 brew_file="$HOME/dotfiles/i.brew.packages"
 
-# Check if already installed
-if brew list "$package" &>/dev/null; then
-    echo "✓ Package '$package' is already installed"
-    exit 0
-fi
+# Function to install all packages
+install_all() {
+    echo "=== Installing all packages from i.brew.packages ==="
+    echo ""
 
-# Check if brew can install it
-echo "Checking if '$package' is available in Homebrew..."
-if ! brew info "$package" &>/dev/null; then
-    echo "✗ Package '$package' not found in Homebrew"
-    brew search "$package"
-    exit 1
-fi
-
-# Show package info
-brew info "$package"
-echo ""
-
-# Prompt to add to i.brew.packages
-echo -n "Add '$package' to i.brew.packages and install? (y/n): "
-read -r response
-
-if [[ "$response" =~ ^[Yy]$ ]]; then
-    # Install the package
-    echo "Installing '$package'..."
-    if brew install "$package"; then
-        # Add to i.brew.packages if not already there
-        if ! grep -q "\b$package\b" "$brew_file"; then
-            # Read current content, add package, and write back
-            current_content=$(cat "$brew_file")
-            echo "${current_content% } $package" > "$brew_file"
-            echo "✓ Added '$package' to i.brew.packages"
-        fi
-        echo "✓ Successfully installed '$package'"
-    else
-        echo "✗ Failed to install '$package'"
+    if [[ ! -f "$brew_file" ]]; then
+        echo "✗ Error: i.brew.packages file not found at $brew_file"
         exit 1
     fi
+
+    packages=$(cat "$brew_file")
+    echo "Packages to install: $packages"
+    echo ""
+
+    installed_count=0
+    skipped_count=0
+    failed_count=0
+
+    for package in $packages; do
+        if brew list "$package" &>/dev/null || brew list --cask "$package" &>/dev/null; then
+            echo "⊘ Skipping $package (already installed)"
+            ((skipped_count++))
+        else
+            echo "→ Installing $package..."
+            if brew install "$package" 2>/dev/null || brew install --cask "$package" 2>/dev/null; then
+                echo "✓ Installed $package"
+                ((installed_count++))
+            else
+                echo "✗ Failed to install $package"
+                ((failed_count++))
+            fi
+        fi
+    done
+
+    echo ""
+    echo "Summary: $installed_count installed, $skipped_count skipped, $failed_count failed"
+}
+
+# Function to install a specific package
+install_package() {
+    package="$1"
+
+    # Check if already installed
+    if brew list "$package" &>/dev/null; then
+        echo "✓ Package '$package' is already installed"
+        exit 0
+    fi
+
+    # Check if brew can install it
+    echo "Checking if '$package' is available in Homebrew..."
+    if ! brew info "$package" &>/dev/null; then
+        echo "✗ Package '$package' not found in Homebrew"
+        brew search "$package"
+        exit 1
+    fi
+
+    # Show package info
+    brew info "$package"
+    echo ""
+
+    # Prompt to add to i.brew.packages
+    echo -n "Add '$package' to i.brew.packages and install? (y/n): "
+    read -r response
+
+    if [[ "$response" =~ ^[Yy]$ ]]; then
+        # Install the package
+        echo "Installing '$package'..."
+        if brew install "$package"; then
+            # Add to i.brew.packages if not already there
+            if ! grep -q "\b$package\b" "$brew_file"; then
+                # Read current content, add package, and write back
+                current_content=$(cat "$brew_file")
+                echo "${current_content% } $package" > "$brew_file"
+                echo "✓ Added '$package' to i.brew.packages"
+            fi
+            echo "✓ Successfully installed '$package'"
+        else
+            echo "✗ Failed to install '$package'"
+            exit 1
+        fi
+    else
+        echo "Installation cancelled"
+        exit 0
+    fi
+}
+
+# Main logic
+if [ -z "$1" ]; then
+    install_all
 else
-    echo "Installation cancelled"
-    exit 0
+    install_package "$1"
 fi
