@@ -67,16 +67,19 @@ install_package() {
     brew info "$package"
     echo ""
 
-    # Prompt to add to brew.packages
-    echo -n "Add '$package' to brew.packages and install? (y/n): "
-    read -r response
+    # Install the package
+    echo "Installing '$package'..."
+    if brew install "$package"; then
+        echo "✓ Successfully installed '$package'"
+        echo ""
 
-    if [[ "$response" =~ ^[Yy]$ ]]; then
-        # Install the package
-        echo "Installing '$package'..."
-        if brew install "$package"; then
-            # Add to brew.packages if not already there
-            if ! grep -q "\b$package\b" "$brew_file"; then
+        # Check if package is already in brew.packages
+        if ! grep -q "\b$package\b" "$brew_file"; then
+            # Prompt to add to brew.packages
+            echo -n "Add '$package' to brew.packages? (y/n): "
+            read -r response
+
+            if [[ "$response" =~ ^[Yy]$ ]]; then
                 # Read current content, add package, and write back
                 current_content=$(cat "$brew_file")
                 echo "${current_content% } $package" > "$brew_file"
@@ -98,15 +101,15 @@ install_package() {
                 else
                     echo "✗ Warning: Failed to commit. You may need to commit manually."
                 fi
+            else
+                echo "Package installed but not added to brew.packages"
             fi
-            echo "✓ Successfully installed '$package'"
         else
-            echo "✗ Failed to install '$package'"
-            exit 1
+            echo "ℹ Package '$package' is already tracked in brew.packages"
         fi
     else
-        echo "Installation cancelled"
-        exit 0
+        echo "✗ Failed to install '$package'"
+        exit 1
     fi
 }
 
