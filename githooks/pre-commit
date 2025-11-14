@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Run gitleaks to check for secrets before committing
+echo "Running gitleaks security check..."
+
+if gitleaks dir . ; then
+    echo "✓ Gitleaks check passed - no secrets detected"
+    exit 0
+else
+    echo "✗ Gitleaks check failed - secrets detected!"
+    echo "Commit blocked. Please remove secrets and try again."
+    exit 1
+fi

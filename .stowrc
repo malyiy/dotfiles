@@ -9,3 +9,4 @@
 --ignore=.gitignore
 --ignore=zed/.config/conversations/*
 --ignore=zed/.config/prompts/*
+--ignore=githooks

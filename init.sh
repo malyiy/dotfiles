@@ -63,12 +63,33 @@ echo "Summary: $installed_count installed, $skipped_count skipped, $failed_count
 echo ""
 
 # 3. Create symlinks with stow
-echo "[3/3] Creating symlinks with stow..."
+echo "[3/4] Creating symlinks with stow..."
 
 # Stow all packages at once
 stow */
 
 echo "✓ Symlinks created successfully"
+echo ""
+
+# 4. Install git hooks
+echo "[4/4] Installing git hooks..."
+
+if [[ ! -d ".git" ]]; then
+    echo "✗ Not a git repository - skipping git hooks installation"
+else
+    # Create .git/hooks directory if it doesn't exist
+    mkdir -p .git/hooks
+
+    # Copy pre-commit hook and make it executable
+    if [[ -f "githooks/pre-commit" ]]; then
+        cp githooks/pre-commit .git/hooks/pre-commit
+        chmod +x .git/hooks/pre-commit
+        echo "✓ Pre-commit hook installed successfully"
+    else
+        echo "✗ Warning: githooks/pre-commit not found"
+    fi
+fi
+
 echo ""
 echo "=== Initialization Complete ==="
 echo ""
