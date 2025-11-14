@@ -1,109 +1,68 @@
 # Dotfiles
 
-Managed with [GNU Stow](https://www.gnu.org/software/stow/).
+Personal macOS dotfiles managed with [GNU Stow](https://www.gnu.org/software/stow/).
 
-## Installation
-
-### 1. Install Stow
+## Quick Start
 
 ```sh
-brew install stow
+# Clone and initialize
+git clone <repo-url> ~/dotfiles
+cd ~/dotfiles
+./init.sh
 ```
 
-### 2. Stow Your Dotfiles
+The init script installs Homebrew, installs packages from `brew.packages`, creates symlinks with stow, and sets up git hooks.
 
-From the dotfiles directory, stow individual packages or all at once:
+## Custom Commands
 
-```sh
-# Stow individual packages
-stow nvim
-stow gitconfig
-stow zprofile
+### Package Management
 
-# Or stow everything at once
-stow */
-```
+- `bi` - Install all packages from brew.packages
+- `bi <package>` - Install package (prompts to add to brew.packages)
+- `bd <package>` - Uninstall package (prompts to remove from brew.packages)
+
+### Sync
+
+- `dotsync` - Pull latest, commit changes, and push to remote
+
+### Navigation & Tools
+
+- `l`, `lt`, `ll`, `lll` - Enhanced ls with icons and tree views
+- `v` - Launch neovim
+- `lg` - Launch lazygit
+- `..`, `...`, `....` - Navigate up directories
 
 ## Managing Dotfiles
 
-### Add a New Package
+### Stow Packages
 
 ```sh
-# Create a new directory with .config structure
+stow nvim           # Stow individual package
+stow */             # Stow all packages
+stow -D nvim        # Unstow (remove symlinks)
+stow -R nvim        # Re-stow after changes
+stow -n -v nvim     # Dry run
+stow --adopt nvim   # Move existing files into dotfiles
+```
+
+### Add New Package
+
+```sh
 mkdir -p myapp/.config/myapp
-# Add your config files
-cp ~/.config/myapp/config.yml myapp/.config/myapp/
-# Stow it
+# Add config files
 stow myapp
-```
-
-### Remove a Package
-
-```sh
-# Unstow (removes symlinks)
-stow -D nvim
-```
-
-### Re-stow After Changes
-
-```sh
-# Re-stow to update symlinks
-stow -R nvim
-```
-
-### Check What Would Be Stowed
-
-```sh
-# Dry run (simulation mode)
-stow -n -v nvim
 ```
 
 ## Structure
 
 ```
 dotfiles/
-├── gitconfig/
-│   └── .gitconfig
-├── nvim/
-│   └── .config/
-│       └── nvim/
-│           └── init.lua
-├── zprofile/
-│   └── .zprofile
-├── zed/
-│   └── .config/
-│       └── zed/
-│           ├── settings.json
-│           └── keymap.json
-└── ...
-```
-
-Each package directory mirrors your home directory structure. Stow creates symlinks from `~` to the files in these directories.
-
-## Troubleshooting
-
-### Conflicts with Existing Files
-
-If stow reports conflicts, back up and remove the existing files:
-
-```sh
-# Backup
-mkdir -p ~/dotfiles-backup
-cp ~/.gitconfig ~/dotfiles-backup/
-
-# Remove
-rm ~/.gitconfig
-
-# Then stow
-stow gitconfig
-```
-
-### Adopt Existing Files
-
-Alternatively, use `--adopt` to move existing files into your dotfiles:
-
-```sh
-stow --adopt gitconfig
-# This moves ~/.gitconfig into dotfiles/gitconfig/.gitconfig
-# and creates the symlink
+├── gitconfig/      # Git config with delta diff viewer
+├── nvim/           # Neovim LazyVim config
+├── phoenix/        # Shell aliases (.phoenix)
+├── zed/            # Zed editor settings
+├── zprofile/       # Shell environment (.zprofile)
+├── utils/          # Custom utility scripts (bi, bd, dotsync)
+├── brew.packages   # Tracked Homebrew packages
+└── init.sh         # Initialization script
 ```
