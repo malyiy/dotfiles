@@ -2,18 +2,18 @@
 
 # Brew install with tracking
 # Usage:
-#   bi              - Install all packages from i.brew.packages
-#   bi <package>    - Install a specific package and add to i.brew.packages
+#   bi              - Install all packages from brew.packages
+#   bi <package>    - Install a specific package and add to brew.packages
 
-brew_file="$HOME/dotfiles/i.brew.packages"
+brew_file="$HOME/dotfiles/brew.packages"
 
 # Function to install all packages
 install_all() {
-    echo "=== Installing all packages from i.brew.packages ==="
+    echo "=== Installing all packages from brew.packages ==="
     echo ""
 
     if [[ ! -f "$brew_file" ]]; then
-        echo "✗ Error: i.brew.packages file not found at $brew_file"
+        echo "✗ Error: brew.packages file not found at $brew_file"
         exit 1
     fi
 
@@ -67,26 +67,26 @@ install_package() {
     brew info "$package"
     echo ""
 
-    # Prompt to add to i.brew.packages
-    echo -n "Add '$package' to i.brew.packages and install? (y/n): "
+    # Prompt to add to brew.packages
+    echo -n "Add '$package' to brew.packages and install? (y/n): "
     read -r response
 
     if [[ "$response" =~ ^[Yy]$ ]]; then
         # Install the package
         echo "Installing '$package'..."
         if brew install "$package"; then
-            # Add to i.brew.packages if not already there
+            # Add to brew.packages if not already there
             if ! grep -q "\b$package\b" "$brew_file"; then
                 # Read current content, add package, and write back
                 current_content=$(cat "$brew_file")
                 echo "${current_content% } $package" > "$brew_file"
-                echo "✓ Added '$package' to i.brew.packages"
+                echo "✓ Added '$package' to brew.packages"
 
                 # Commit and push changes
                 echo ""
                 echo "Committing changes to git..."
                 cd "$HOME/dotfiles" || exit 1
-                git add i.brew.packages
+                git add brew.packages
                 if git commit -m "Added to brew.packages: ${package}"; then
                     echo "✓ Changes committed"
                     echo "Pushing to remote..."

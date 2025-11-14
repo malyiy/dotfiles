@@ -45,7 +45,7 @@ Stow creates symlinks from `~/.config/` to files in these packages (configured v
 - **.stowrc**: Configures stow to target `~/.config` and ignore certain files
 - **phoenix/.phoenix**: Contains all shell aliases (sourced by zprofile/.zprofile:26)
 - **zprofile/.zprofile**: Main shell initialization - sets up PATH, loads nvm, rbenv, zoxide
-- **i.brew.packages**: List of Homebrew packages for reference
+- **brew.packages**: List of Homebrew packages for reference
 
 ### Configuration Organization
 The repository separates concerns:

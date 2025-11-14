@@ -25,15 +25,15 @@ fi
 
 echo ""
 
-# 2. Install packages from i.brew.packages
+# 2. Install packages from brew.packages
 echo "[2/3] Installing Homebrew packages..."
-if [[ ! -f "i.brew.packages" ]]; then
-    echo "✗ Error: i.brew.packages file not found"
+if [[ ! -f "brew.packages" ]]; then
+    echo "✗ Error: brew.packages file not found"
     exit 1
 fi
 
 # Read packages from file and install
-packages=$(cat i.brew.packages)
+packages=$(cat brew.packages)
 echo "Installing packages: $packages"
 echo ""
 
