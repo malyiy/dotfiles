@@ -81,6 +81,23 @@ install_package() {
                 current_content=$(cat "$brew_file")
                 echo "${current_content% } $package" > "$brew_file"
                 echo "✓ Added '$package' to i.brew.packages"
+
+                # Commit and push changes
+                echo ""
+                echo "Committing changes to git..."
+                cd "$HOME/dotfiles" || exit 1
+                git add i.brew.packages
+                if git commit -m "Added to brew.packages: ${package}"; then
+                    echo "✓ Changes committed"
+                    echo "Pushing to remote..."
+                    if git push; then
+                        echo "✓ Successfully pushed to remote"
+                    else
+                        echo "✗ Warning: Failed to push. You may need to push manually."
+                    fi
+                else
+                    echo "✗ Warning: Failed to commit. You may need to commit manually."
+                fi
             fi
             echo "✓ Successfully installed '$package'"
         else
