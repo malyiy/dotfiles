@@ -81,12 +81,12 @@ else
     mkdir -p .git/hooks
 
     # Copy pre-commit hook and make it executable
-    if [[ -f "githooks/pre-commit" ]]; then
-        cp githooks/pre-commit .git/hooks/pre-commit
+    if [[ -f ".githooks/pre-commit" ]]; then
+        cp .githooks/pre-commit .git/hooks/pre-commit
         chmod +x .git/hooks/pre-commit
         echo "✓ Pre-commit hook installed successfully"
     else
-        echo "✗ Warning: githooks/pre-commit not found"
+        echo "✗ Warning: .githooks/pre-commit not found"
     fi
 fi
 
