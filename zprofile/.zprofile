@@ -20,11 +20,8 @@ export NVM_DIR="$HOME/.nvm"
 # Added by `rbenv init` on Sun Aug 11 21:05:49 EEST 2024
 eval "$(rbenv init - --no-rehash zsh)"
 
-alias activate_super_power='source ~/config/.phoenix'
-alias persist_super_power='echo "source ~/config/.phoenix" >> ~/.zprofile'
-
 source ~/.phoenix
- 
+
 export LM_STUDIO_API_KEY=whatever
 # export LM_STUDIO_API_BASE=http://localhost:1234/v1
 export LM_STUDIO_API_BASE=http://127.0.0.1:1234/v1

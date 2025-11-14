@@ -1,4 +1,5 @@
-
+zed/.config/zed/conversations
+zed/.config/zed/prompts
 .DS_Store
 zed/prompts/prompts-library-db.0.mdb/lock.mdb
 .aider*

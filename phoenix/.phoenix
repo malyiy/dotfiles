@@ -1,10 +1,8 @@
+#!/bin/bash
+
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # Aliases
-
-## Nix
-alias drebuild="sudo darwin-rebuild switch --flake ~/dotfiles/nix-darwin#malyiy --impure";
-alias nix-update="nix flake update"
 
 ## Movement
 alias l="eza -a -l -h --tree --level=1 --icons=always --no-user"
@@ -24,4 +22,3 @@ alias lg="lazygit"
 alias yrid="~/utils/build-react-native-for-my-iphone.sh"
 
 export REACT_EDITOR=zed
-

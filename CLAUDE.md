@@ -4,82 +4,104 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## System Overview
 
-This is a personal dotfiles repository for macOS configuration management using Nix Darwin and Home Manager. The setup provides a declarative configuration approach for system packages, applications, and dotfiles.
+This is a personal dotfiles repository for macOS, managed using GNU Stow for symlink management. The repository contains configuration files for development tools, shell environment, and applications, organized as independent "packages" that can be stowed individually or collectively.
 
 ## Key Commands
 
-### System Management
-- `drebuild` - Rebuild and switch to new nix-darwin configuration (requires sudo)
-- `nix-update` - Update nix flake inputs
-- `darwin-rebuild switch --flake nix-darwin#malyiy --impure` - Manual rebuild command
+### Dotfile Management
+- `stow <package>` - Create symlinks for a specific package (e.g., `stow nvim`, `stow zed`)
+- `stow */` - Stow all packages at once
+- `stow -D <package>` - Remove symlinks for a package (unstow)
+- `stow -R <package>` - Re-stow a package after making changes
+- `stow -n -v <package>` - Dry run to preview what would be stowed
+- `stow --adopt <package>` - Move existing files into dotfiles and create symlinks
 
 ### Navigation and File Management
 - `l` - Enhanced ls with icons and tree view (level 1)
 - `lt` - Enhanced ls with total size
 - `ll` / `lll` - Tree view (level 2) without permissions/filesize
-- `..` / `...` / `....` - Navigate up directories
+- `..` / `...` / `....` - Navigate up 1/2/3 directories
 
 ### Development Tools
 - `v` - Launch neovim
 - `lg` - Launch lazygit
-- `yrid` - Build React Native for iPhone (custom script)
+- `yrid` - Build React Native for iPhone (custom script in ~/utils/)
 
 ## Architecture
 
-### Configuration Structure
-- **nix-darwin/flake.nix**: Main system configuration with packages and homebrew casks
-- **nix-darwin/home.nix**: Home Manager configuration for user-level dotfiles and symlinks
-- **zprofile/.zprofile**: Shell environment variables and path configuration
-- **phoenix/.phoenix**: Shell aliases and development environment setup
+### Stow-Based Package Structure
 
-### Package Management
-The system uses a hybrid approach:
-1. **Nix packages** (system-level): Core development tools, CLI utilities
-2. **Homebrew casks**: GUI applications (Zed, Warp, Ollama, Docker)
-3. **Home Manager**: Dotfile symlinks and user configuration
+Each top-level directory is a "package" that mirrors the home directory structure:
+- **gitconfig/** - Git configuration with delta diff viewer, includes work-specific config
+- **nvim/** - Neovim LazyVim configuration
+- **phoenix/** - Shell aliases and custom commands (sourced by .zprofile)
+- **zed/** - Zed editor settings, keymaps, tasks, snippets, and prompts
+- **zprofile/** - Shell environment variables, PATH configuration, runtime managers
+- **utils/** - Custom utility scripts
+
+Stow creates symlinks from `~/.config/` to files in these packages (configured via `.stowrc`).
+
+### Important Files
+- **.stowrc**: Configures stow to target `~/.config` and ignore certain files
+- **phoenix/.phoenix**: Contains all shell aliases (sourced by zprofile/.zprofile:26)
+- **zprofile/.zprofile**: Main shell initialization - sets up PATH, loads nvm, rbenv, zoxide
+- **i.brew.packages**: List of Homebrew packages for reference
+
+### Configuration Organization
+The repository separates concerns:
+1. **phoenix/.phoenix** - Aliases and commands only
+2. **zprofile/.zprofile** - Environment variables, PATH setup, tool initialization
+3. Individual packages for each tool's configuration
 
 ### Development Environment
-- **Primary Editor**: Zed (configured with Claude Sonnet 4, vim mode, JetBrains keymap)
+- **Primary Editor**: Zed
 - **Terminal**: Warp
-- **Version Control**: Git with lazygit frontend
-- **Languages**: Node.js (nvm), Python 3.11, Java (OpenJDK), Ruby (rbenv)
-- **Mobile Development**: Android SDK, iOS deploy tools, React Native utilities
+- **Version Control**: Git with lazygit and delta diff viewer
+- **Languages**: Node.js (nvm), Ruby (rbenv), Bun
+- **Mobile Development**: Android SDK, React Native utilities
+- **Git Workflow**: Conditional config for work projects in ~/work_station/work/
 
-### Dotfile Linking Strategy
-Home Manager creates symlinks from the repository to home directory:
-- `.config/zed` → `~/dotfiles/zed`
-- `.config/lvim` → `~/dotfiles/lvim`
-- `.zprofile` → `~/dotfiles/zprofile/.zprofile`
-- `.gitconfig` → `~/dotfiles/gitconfig/.gitconfig`
-- `.phoenix` → `~/dotfiles/phoenix/.phoenix`
+## Environment Details
 
-## Environment Setup
+### Shell Initialization Flow
+1. `.zprofile` sources `.phoenix` for aliases
+2. Homebrew environment loaded first
+3. PATH extended with local bins, language runtimes, Android SDK
+4. nvm, rbenv, and zoxide initialized
 
-### Path Configuration
-The system extends PATH with:
+### PATH Extensions (in order)
 - Homebrew binaries (`/opt/homebrew/bin`)
 - Local user binaries (`~/.local/bin`)
 - Bun runtime (`$BUN_INSTALL/bin`)
 - Ruby binaries (`/opt/homebrew/opt/ruby/bin`)
-- Android SDK tools (`$ANDROID_HOME/emulator`, `$ANDROID_HOME/platform-tools`)
+- Android SDK (`$ANDROID_HOME/emulator`, `$ANDROID_HOME/platform-tools`)
 - OpenJDK (`/opt/homebrew/opt/openjdk/bin`)
 - Global npm packages (`~/.npm-global/bin`)
 
 ### Runtime Managers
-- **Node.js**: nvm (configured in .zprofile)
-- **Ruby**: rbenv with auto-initialization
-- **Shell navigation**: zoxide for smart directory jumping
+- **Node.js**: nvm (initialized in zprofile/.zprofile:16-18)
+- **Ruby**: rbenv (initialized in zprofile/.zprofile:21)
+- **Shell navigation**: zoxide (initialized in zprofile/.zprofile:34)
 
 ### API Configuration
-- LM Studio API configured for local AI model serving on port 1234
-- React Editor set to Zed for React Native development
+- LM Studio API: http://127.0.0.1:1234/v1 (for local AI models)
+- React Editor: Zed (for React Native development)
 
 ## Making Changes
 
-When modifying the system configuration:
-1. Edit `nix-darwin/flake.nix` for system packages or homebrew apps
-2. Edit `nix-darwin/home.nix` for dotfile symlinks
-3. Run `drebuild` to apply changes
-4. Configuration changes are version-controlled in git
+### Adding a New Package
+1. Create directory: `mkdir -p <package>/.config/<package>`
+2. Add config files to the directory
+3. Stow it: `stow <package>`
 
-The system is configured for aarch64-darwin (Apple Silicon) and uses unstable nixpkgs channel for latest packages.
+### Modifying Existing Configs
+1. Edit files directly in the package directories
+2. Changes are immediately reflected (files are symlinked)
+3. For shell changes, reload: `source ~/.zprofile`
+
+### Adding Aliases or Commands
+- Edit `phoenix/.phoenix` (not zprofile/.zprofile)
+- Reload shell or run: `source ~/.phoenix`
+
+### Deprecated
+The `nix-darwin.deprecated/` directory contains old Nix Darwin configuration (no longer in use).

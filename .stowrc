@@ -1,4 +1,11 @@
---target=~/.config
 --ignore=.stowrc
 --ignore=i.brew.packages
+--ignore=nix-darwin.deprecated
 --ignore=DS_Store
+--ignore=init.sh
+--ignore=README.md
+--ignore=CLAUDE.md
+--ignore=.git
+--ignore=.gitignore
+--ignore=zed/.config/conversations/*
+--ignore=zed/.config/prompts/*
