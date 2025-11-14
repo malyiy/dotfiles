@@ -18,7 +18,7 @@
   "theme": "Warp One Dark",
   "icon_theme": "Colored Zed Icons Theme Dark",
   "cursor_blink": false,
-  "relative_line_numbers": true,
+  "relative_line_numbers": "enabled",
   "show_whitespaces": "all",
 
   // Fonts
