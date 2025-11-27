@@ -31,7 +31,7 @@
     }
   },
   {
-    "context": "((Workspace && !vim_mode) || (Editor && vim_mode == normal)) && !CommandPalette && !FileFinder",
+    "context": "((Workspace && !vim_mode) || (Editor && vim_mode == normal)) && !CommandPalette && !FileFinder && !Terminal && !InlineAssistEditor",
     "bindings": {
       // "a s d k": "dev::OpenKeyContextView",
       "shift shift": "file_finder::Toggle",

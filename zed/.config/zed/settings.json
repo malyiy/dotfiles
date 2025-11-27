@@ -8,13 +8,6 @@
 // from the command palette or from Zed application menu.
 {
   // Theme & Appearance
-  "agent_servers": {
-    "claude_code": {
-      "command": "claude",
-      "args": [],
-      "env": {}
-    }
-  },
   "theme": "Warp One Dark",
   "icon_theme": "Colored Zed Icons Theme Dark",
   "cursor_blink": false,
@@ -42,16 +35,13 @@
     "ollama": {}
   },
   "agent": {
+    "inline_alternatives": [],
     "play_sound_when_agent_done": true,
     "use_modifier_to_send": true,
     "default_profile": "write",
-    "inline_assistant_model": {
-      "provider": "zed.dev",
-      "model": "claude-sonnet-4"
-    },
     "default_model": {
       "provider": "zed.dev",
-      "model": "claude-sonnet-4"
+      "model": "claude-sonnet-4-5-thinking"
     }
   },
   "features": {
@@ -68,16 +58,19 @@
   },
   "languages": {
     "JavaScript": {
+      "formatter": [],
       "code_actions_on_format": {
         "source.fixAll.eslint": true
       }
     },
     "TypeScript": {
+      "formatter": [],
       "code_actions_on_format": {
         "source.fixAll.eslint": true
       }
     },
     "TSX": {
+      "formatter": [],
       "code_actions_on_format": {
         "source.fixAll.eslint": true
       }
@@ -120,6 +113,9 @@
     }
   },
   "git": {
+    "inline_blame": {
+      "show_commit_summary": true
+    },
     "blame": {
       "show_avatar": true
     }
