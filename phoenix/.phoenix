@@ -23,5 +23,6 @@ alias yrid="~/utils/build-react-native-for-my-iphone.sh"
 alias bi="~/utils/bi.sh"
 alias bd="~/utils/bd.sh"
 alias dotsync="~/utils/dotsync.sh"
+alias checkinstalled="~/utils/checkinstalled.sh"
 
 export REACT_EDITOR=zed
