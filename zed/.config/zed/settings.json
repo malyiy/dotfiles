@@ -89,6 +89,9 @@
     "button": false
   },
   "terminal": {
+    "shell": {
+      "program": "fish"
+    },
     "dock": "left",
     "working_directory": "current_project_directory",
     "font_family": "JetBrainsMonoNL Nerd Font",
