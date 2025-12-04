@@ -8,12 +8,12 @@
 // from the command palette or from Zed application menu.
 {
   // Theme & Appearance
+  "colorize_brackets": true,
   "theme": "Warp One Dark",
   "icon_theme": "Colored Zed Icons Theme Dark",
   "cursor_blink": false,
   "relative_line_numbers": "enabled",
   "show_whitespaces": "all",
-
   // Fonts
   "ui_font_family": "JetBrainsMonoNL Nerd Font",
   "ui_font_size": 15,
@@ -21,7 +21,6 @@
   "buffer_font_family": "JetBrainsMonoNL Nerd Font",
   "buffer_font_size": 12,
   "buffer_font_weight": 620,
-
   // Editor Behavior
   "base_keymap": "JetBrains",
   "vim_mode": true,
@@ -47,7 +46,6 @@
   "features": {
     "edit_prediction_provider": "zed"
   },
-
   // Language Settings
   "lsp_highlight_debounce": 5,
   "inlay_hints": {
@@ -76,14 +74,13 @@
       }
     }
   },
-
   // Panels & UI
-  "tabs": { "file_icons": true },
+  "tabs": {
+    "file_icons": true,
+    "git_status": true
+  },
   "project_panel": {
     "dock": "right"
-  },
-  "chat_panel": {
-    "button": "always"
   },
   "outline_panel": {
     "dock": "left"
@@ -103,7 +100,6 @@
         "activate_script": "default"
       }
     },
-    "font_features": null,
     "font_size": 14,
     "line_height": "comfortable",
     "option_as_meta": false,
@@ -120,7 +116,6 @@
       "show_avatar": true
     }
   },
-
   // Privacy
   "telemetry": {
     "diagnostics": false,

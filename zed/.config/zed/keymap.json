@@ -34,7 +34,7 @@
     "context": "((Workspace && !vim_mode) || (Editor && vim_mode == normal)) && !CommandPalette && !FileFinder && !Terminal && !InlineAssistEditor",
     "bindings": {
       // "a s d k": "dev::OpenKeyContextView",
-      "shift shift": "file_finder::Toggle",
+      "shift shift": "tab_switcher::ToggleAll",
       "space l": "workspace::ToggleRightDock",
       "space h": "workspace::ToggleLeftDock",
       "space j": "workspace::ToggleBottomDock",
@@ -52,6 +52,12 @@
     "bindings": {
       "s": "vim::PushSneak",
       "shift-s": "vim::PushSneakBackward"
+    }
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "cmd-k": null
     }
   }
 ]
