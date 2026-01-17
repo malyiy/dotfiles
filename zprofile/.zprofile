@@ -29,3 +29,15 @@ export LM_STUDIO_API_BASE=http://127.0.0.1:1234/v1
 export PATH=~/.npm-global/bin:$PATH
 
 eval "$(zoxide init zsh)"
+
+[ -f ~/dotfiles/.env ] && source ~/dotfiles/.env
+
+function glm() {
+    (
+        export ANTHROPIC_BASE_URL="https://api.z.ai/api/anthropic"
+        export ANTHROPIC_AUTH_TOKEN="$GLM_API_TOKEN"
+        export ANTHROPIC_DEFAULT_SONNET_MODEL="glm-4.7"
+
+        claude "$@"
+    )
+}

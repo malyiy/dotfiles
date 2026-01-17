@@ -2,3 +2,4 @@ zed/.config/zed/conversations
 zed/.config/zed/prompts
 .DS_Store
 .aider*
+.env
