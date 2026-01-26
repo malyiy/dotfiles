@@ -72,3 +72,8 @@ zoxide init fish | source
 # if command -v zoxide >/dev/null
 #     zoxide init fish | source
 # end
+
+# Added by LM Studio CLI (lms)
+set -gx PATH $PATH /Users/malyiy/.lmstudio/bin
+# End of LM Studio CLI section
+
