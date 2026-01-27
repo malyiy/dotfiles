@@ -3,7 +3,7 @@
 # Run gitleaks to check for secrets before committing
 echo "Running gitleaks security check..."
 
-if gitleaks dir . ; then
+if gitleaks git . --staged ; then
     echo "✓ Gitleaks check passed - no secrets detected"
     exit 0
 else
