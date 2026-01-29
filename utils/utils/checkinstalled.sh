@@ -9,32 +9,56 @@ CHECK_MARK="\xE2\x9C\x94"
 CROSS_MARK="\xE2\x9D\x8C"
 
 BREW_PACKAGES="$HOME/dotfiles/brew.packages"
-
-# Check if file exists
-if [ ! -f "$BREW_PACKAGES" ]; then
-	echo -e "${RED}Error: File '$BREW_PACKAGES' not found.${NC}"
-	exit 1
-fi
-
-echo -e "Checking Homebrew packages from: ${YELLOW}$BREW_PACKAGES${NC}\n"
-
-# 3. Read the file
-# We use 'cat' and 'tr' to convert newlines to spaces, ensuring
-# the loop works even if the list is on one line or multiple lines.
-PACKAGE_LIST=$(cat "$BREW_PACKAGES" | tr '\n' ' ')
+BREW_CASKS="$HOME/dotfiles/brew.casks"
 
 MISSING_PACKAGES=()
 
-# 4. Loop through each package
-for pkg in $PACKAGE_LIST; do
-	# Skip empty strings caused by extra spaces
-	if [ -z "$pkg" ]; then continue; fi
+# Check formulae
+if [ -f "$BREW_PACKAGES" ]; then
+	echo -e "=== Formulae === (${YELLOW}$BREW_PACKAGES${NC})\n"
 
-	# Check if installed (checking both Formulae and Casks)
-	if brew list -1 | grep -q "^${pkg}$"; then
-		echo -e "${GREEN}${CHECK_MARK} [INSTALLED] ${pkg}${NC}"
-	else
-		echo -e "${RED}${CROSS_MARK} [MISSING]   ${pkg}${NC}"
-		MISSING_PACKAGES+=("$pkg")
-	fi
-done
+	PACKAGE_LIST=$(cat "$BREW_PACKAGES" | tr '\n' ' ')
+
+	for pkg in $PACKAGE_LIST; do
+		if [ -z "$pkg" ]; then continue; fi
+
+		if brew list "$pkg" &>/dev/null; then
+			echo -e "${GREEN}${CHECK_MARK} [INSTALLED] ${pkg}${NC}"
+		else
+			echo -e "${RED}${CROSS_MARK} [MISSING]   ${pkg}${NC}"
+			MISSING_PACKAGES+=("$pkg")
+		fi
+	done
+else
+	echo -e "${RED}Error: File '$BREW_PACKAGES' not found.${NC}"
+fi
+
+echo ""
+
+# Check casks
+if [ -f "$BREW_CASKS" ]; then
+	echo -e "=== Casks === (${YELLOW}$BREW_CASKS${NC})\n"
+
+	CASK_LIST=$(cat "$BREW_CASKS" | tr '\n' ' ')
+
+	for pkg in $CASK_LIST; do
+		if [ -z "$pkg" ]; then continue; fi
+
+		if brew list --cask "$pkg" &>/dev/null; then
+			echo -e "${GREEN}${CHECK_MARK} [INSTALLED] ${pkg}${NC}"
+		else
+			echo -e "${RED}${CROSS_MARK} [MISSING]   ${pkg}${NC}"
+			MISSING_PACKAGES+=("$pkg")
+		fi
+	done
+else
+	echo -e "${RED}Error: File '$BREW_CASKS' not found.${NC}"
+fi
+
+# Summary
+echo ""
+if [ ${#MISSING_PACKAGES[@]} -gt 0 ]; then
+	echo -e "${RED}Missing packages: ${MISSING_PACKAGES[*]}${NC}"
+else
+	echo -e "${GREEN}All packages are installed!${NC}"
+fi
