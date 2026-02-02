@@ -1,0 +1,43 @@
+# --- Appearance (Clean for Claude Code) ---
+#theme = catppuccin-mocha
+# Disables the title bar for a cleaner, flatter look
+window-decoration = true
+# Adds a little breathing room around the text
+window-padding-x = 10
+window-padding-y = 10
+# Optional: background blur if you like that aesthetic
+background-opacity = 0.95
+background-blur-radius = 20
+
+# --- Vim-Style Split Navigation ---
+# We use 'opt' (Option/Alt) to avoid breaking <C-w> inside Vim.
+keybind = opt+h=goto_split:left
+keybind = opt+j=goto_split:down
+keybind = opt+k=goto_split:up
+keybind = opt+l=goto_split:right
+
+# --- Vim-Style Split Creation ---
+# 's' for split (horizontal), 'v' for vsplit (vertical)
+# This mimics :sp and :vsp behavior from Vim
+keybind = opt+s=new_split:down
+keybind = opt+v=new_split:right
+keybind = opt+n=equalize_splits
+
+# --- Tab Management ---
+keybind = cmd+t=new_tab
+keybind = cmd+w=close_surface
+# Move between tabs like Vim (gt / gT logic but with modifiers)
+keybind = cmd+shift+h=previous_tab
+keybind = cmd+shift+l=next_tab
+
+# --- Zoom Feature ---
+# Like tmux 'z' - zooms the current split to full size and back
+keybind = opt+z=toggle_split_zoom
+
+# --- Font Settings ---
+# Ghostty detects your installed fonts. JetBrains Mono is great for coding.
+font-family = JetBrains Mono
+font-size = 14
+# Enable ligatures (arrows, etc.)
+font-feature = calt
+font-feature = liga
