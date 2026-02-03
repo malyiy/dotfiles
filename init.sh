@@ -63,7 +63,7 @@ echo "Summary: $installed_count installed, $skipped_count skipped, $failed_count
 echo ""
 
 # 3. Create symlinks with stow
-echo "[3/4] Creating symlinks with stow..."
+echo "[3/5] Creating symlinks with stow..."
 
 # Stow all packages at once
 stow */
@@ -72,7 +72,7 @@ echo "✓ Symlinks created successfully"
 echo ""
 
 # 4. Install git hooks
-echo "[4/4] Installing git hooks..."
+echo "[4/5] Installing git hooks..."
 
 if [[ ! -d ".git" ]]; then
     echo "✗ Not a git repository - skipping git hooks installation"
@@ -88,6 +88,19 @@ else
     else
         echo "✗ Warning: .githooks/pre-commit not found"
     fi
+fi
+
+echo ""
+
+# 5. Configure starship prompt
+echo "[5/5] Configuring starship prompt..."
+
+STARSHIP_INIT='eval "$(starship init zsh)"'
+if grep -qF "$STARSHIP_INIT" ~/.zshrc 2>/dev/null; then
+    echo "⊘ Starship already configured in ~/.zshrc"
+else
+    echo "$STARSHIP_INIT" >> ~/.zshrc
+    echo "✓ Starship initialization added to ~/.zshrc"
 fi
 
 echo ""

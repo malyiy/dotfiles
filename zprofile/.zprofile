@@ -22,6 +22,8 @@ eval "$(rbenv init - --no-rehash zsh)"
 
 source ~/.phoenix
 
+source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+
 export LM_STUDIO_API_KEY=whatever
 # export LM_STUDIO_API_BASE=http://localhost:1234/v1
 export LM_STUDIO_API_BASE=http://127.0.0.1:1234/v1
@@ -49,3 +51,4 @@ function zz() {
 	[ "$cwd" != "$PWD" ] && [ -d "$cwd" ] && builtin cd -- "$cwd"
 	rm -f -- "$tmp"
 }
+
