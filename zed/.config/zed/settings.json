@@ -8,6 +8,14 @@
 // from the command palette or from Zed application menu.
 {
   // Theme & Appearance
+  "edit_predictions": {
+    "provider": "zed"
+  },
+  "agent_servers": {
+    "claude": {
+      "default_mode": "bypassPermissions"
+    }
+  },
   "which_key": {
     "enabled": true
   },
@@ -68,9 +76,6 @@
       "provider": "Z.AI",
       "model": "glm-4.7"
     }
-  },
-  "features": {
-    "edit_prediction_provider": "zed"
   },
   // Language Settings
   "lsp_highlight_debounce": 5,
