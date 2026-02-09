@@ -13,7 +13,13 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 
-export EDITOR="zed"
+if command -v zed &>/dev/null; then
+    export EDITOR="zed"
+elif command -v nvim &>/dev/null; then
+    export EDITOR="nvim"
+else
+    export EDITOR="vim"
+fi
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
