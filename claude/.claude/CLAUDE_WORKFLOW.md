@@ -4,15 +4,31 @@ Git workflow, testing, and communication preferences.
 
 ## Project Tracking
 
-Before starting any feature work:
+### Prerequisites
 
 1. Create `personal/` directory in project root if it doesn't exist
 2. Add `personal/` to `.gitignore` if not already ignored
 3. Create feature directory: `personal/{feature-name}/`
-4. Create tracking files:
-   - `PLAN.md` - Implementation plan and architecture decisions
-   - `PROGRESS.md` - Track completed tasks and current status
-   - `NOTES.md` - Research, findings, and context
+
+### Before starting any work
+
+1. Get keywords from task and look into `personal/{feature-name}`
+2. If you find a similar feature, read `DONE.md` and `NOTES.md` to ensure no duplication and correct re-use of that feature
+3. Proceed with user further discussion
+
+### Tracking files structure
+
+- `PLAN.md` - Implementation plan and architecture decisions
+- `PROGRESS.md` - Track completed tasks and current status
+- `NOTES.md` - Research, findings and edge-cases
+- `DONE.md` - Summary of completed tasks and achievements
+
+### Tracking files workflow
+
+1. Discuss with user and create plan, save it to `PLAN.md`
+2. Update `PROGRESS.md` as work progresses
+3. Add notes to `NOTES.md` as needed
+4. Summarize achievements in `DONE.md`
 
 ## Git Workflow
 
@@ -85,6 +101,7 @@ Add dark mode toggle to settings
 ### Self-Review Checklist
 
 Before presenting changes to user:
+
 - [ ] Changes are minimal and focused
 - [ ] No unnecessary refactoring
 - [ ] Error handling is appropriate
@@ -114,6 +131,7 @@ Before presenting changes to user:
 ### Handling Disagreements
 
 When a better approach exists:
+
 1. Explain why the alternative is better
 2. Provide concrete examples
 3. Offer options to resolve efficiently
@@ -136,6 +154,7 @@ When a better approach exists:
 ## Performance Considerations
 
 Priority order:
+
 1. **Runtime speed** - Primary concern across all projects
 2. **Startup time** - Secondary concern
 3. **Memory usage** - Consider when relevant

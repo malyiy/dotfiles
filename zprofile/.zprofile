@@ -13,9 +13,7 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 
-if command -v zed &>/dev/null; then
-    export EDITOR="zed"
-elif command -v nvim &>/dev/null; then
+if command -v nvim &>/dev/null; then
     export EDITOR="nvim"
 else
     export EDITOR="vim"
@@ -32,6 +30,8 @@ source ~/.phoenix
 
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
+export ENABLE_EXPERIMENTAL_MCP_CLI=true
+
 export LM_STUDIO_API_KEY=whatever
 # export LM_STUDIO_API_BASE=http://localhost:1234/v1
 export LM_STUDIO_API_BASE=http://127.0.0.1:1234/v1
@@ -46,6 +46,8 @@ function glm() {
     (
         export ANTHROPIC_BASE_URL="https://api.z.ai/api/anthropic"
         export ANTHROPIC_AUTH_TOKEN="$GLM_API_TOKEN"
+        export ANTHROPIC_DEFAULT_OPUS_MODEL="glm-5"
+        export ANTHROPIC_DEFAULT_HAIKU_MODEL="glm-5"
         export ANTHROPIC_DEFAULT_SONNET_MODEL="glm-4.7"
 
         claude "$@"

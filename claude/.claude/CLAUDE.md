@@ -3,8 +3,11 @@
 ## Quick Reference
 
 - **Rules**: [CLAUDE_RULES.md](./CLAUDE_RULES.md) - Hard rules that must always be followed
+@CLAUDE_RULES
 - **Style**: [CLAUDE_STYLE.md](./CLAUDE_STYLE.md) - Code style and formatting preferences
+@CLAUDE_STYLE
 - **Workflow**: [CLAUDE_WORKFLOW.md](./CLAUDE_WORKFLOW.md) - Git, testing, and communication preferences
+@CLAUDE_WORKFLOW
 
 ## Environment
 
@@ -25,6 +28,7 @@ personal/
     PLAN.md
     PROGRESS.md
     NOTES.md
+  DONE.md
 ```
 
 This directory should be gitignored. Create it if it doesn't exist.
@@ -43,4 +47,5 @@ This directory should be gitignored. Create it if it doesn't exist.
 - All communication in English
 - All code comments in English
 - All commit messages in English
+- For all diagrams use mermaid
 - Verbosity depends on complexity - be detailed for complex features
