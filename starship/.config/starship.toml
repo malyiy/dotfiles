@@ -9,7 +9,7 @@ command_timeout = 1000
 truncate_to_repo = false
 
 [character]
-vicmd_symbol = "[N] >>>"
+vicmd_symbol = "[⚙️ ➜](bold blue)"
 success_symbol = '[➜](bold green)'
 
 [git_branch]
