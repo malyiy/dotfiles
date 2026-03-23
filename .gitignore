@@ -3,3 +3,7 @@ zed/.config/zed/prompts
 .DS_Store
 .aider*
 .env
+helix/.config/helix/grammars
+helix/.config/helix/runtime
+helix/.config/helix/queries
+helix/.config/helix/tutor
