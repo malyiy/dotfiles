@@ -1,9 +1,13 @@
-theme = "onedark"
+theme = "tokyonight_moon"
 
 [editor]
 line-number = "relative"
 mouse = false
 bufferline = "multiple"
+cursorline = true
+color-modes = true
+auto-pairs = true
+end-of-line-diagnostics = "error"
 
 [editor.whitespace.render]
 space = "all"
@@ -11,6 +15,10 @@ tab = "all"
 nbsp = "none"
 nnbsp = "none"
 newline = "none"
+
+[editor.lsp]
+# display-inlay-hints = true
+display-messages = true
 
 [editor.cursor-shape]
 insert = "bar"
