@@ -48,4 +48,5 @@ g = [
     ":redraw", 
     ":reload-all"
 ]
+w = { c = ":buffer-close"}
 
