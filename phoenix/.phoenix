@@ -19,6 +19,7 @@ alias v="nvim"
 alias lg="lazygit"
 alias cc="claude"
 alias ccd="claude --dangerously-skip-permissions"
+alias x="hx"
 
 ## Utils
 alias yrid="~/utils/build-react-native-for-my-iphone.sh"

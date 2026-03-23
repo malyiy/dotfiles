@@ -1,0 +1,60 @@
+# Define the ESLint language server
+[language-server.eslint]
+command = "vscode-eslint-language-server"
+args = ["--stdio"]
+
+# --- React Native (TSX / JSX) ---
+
+[[language]]
+name = "tsx"
+auto-format = true
+language-servers = [
+  { name = "eslint", except-features = ["format"] },
+  "typescript-language-server"
+]
+formatter = { command = "eslint", args = ["--fix"] }
+
+[[language]]
+name = "jsx"
+auto-format = true
+language-servers = [
+  { name = "eslint", except-features = ["format"] },
+  "typescript-language-server"
+]
+formatter = { command = "eslint", args = ["--fix"] }
+
+# --- TypeScript / JavaScript ---
+
+[[language]]
+name = "typescript"
+auto-format = true
+language-servers = [
+  { name = "eslint", except-features = ["format"] },
+  "typescript-language-server"
+]
+formatter = { command = "eslint", args = ["--fix"] }
+
+[[language]]
+name = "javascript"
+auto-format = true
+language-servers = [
+  { name = "eslint", except-features = ["format"] },
+  "typescript-language-server"
+]
+formatter = { command = "eslint", args = ["--fix"] }
+
+# --- JSON (Crucial for package.json, app.json, etc.) ---
+
+[[language]]
+name = "json"
+auto-format = true
+formatter = { command = "eslint", args = ["--fix"] }
+
+[[language]]
+name = "rust"
+auto-format = true
+language-servers = [ "rust-analyzer" ]
+
+[language-server.rust-analyzer]
+command = "rust-analyzer"
+environment = { RUSTUP_TOOLCHAIN = "stable" }
