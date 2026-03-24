@@ -7,6 +7,7 @@ bufferline = "multiple"
 cursorline = true
 color-modes = true
 auto-pairs = true
+true-color = true
 end-of-line-diagnostics = "error"
 
 [editor.whitespace.render]
