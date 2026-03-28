@@ -10,6 +10,10 @@ auto-pairs = true
 true-color = true
 end-of-line-diagnostics = "error"
 
+[editor.inline-diagnostics]
+cursor-line = "hint"
+other-lines = "warning"
+
 [editor.whitespace.render]
 space = "all"
 tab = "all"
