@@ -284,6 +284,8 @@ export function buildSynthesisPrompt(
 
 You do NOT have access to tools. Work purely with the text provided.
 
+CRITICAL: Do NOT attempt to verify facts externally or express intent to do so (e.g., "let me check...", "I should verify..."). You cannot run commands or read files. If you identify a factual dispute between agents, flag it explicitly under "Open Questions" rather than trying to resolve it yourself. Start writing the synthesis immediately — do not prepend internal reasoning or planning text.
+
 ## The Task
 ${task}
 

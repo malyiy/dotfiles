@@ -295,7 +295,18 @@ function generateReportMarkdown(task: string, p1: AgentResult[], cm: string | nu
 		`# Thinking Team Report\n`, `**Task:** ${task}\n`, `**Generated:** ${new Date().toISOString()}\n`,
 		`**Team:** ${ROLES.map(r => `${r.emoji} ${r.name}`).join(" | ")} + Clear Mind 🧠\n`, "---\n",
 	];
-	if (syn) { lines.push("## Executive Summary\n"); const m = syn.match(/## Executive Summary\n([\s\S]*?)(?=\n## |$)/); lines.push((m ? m[1].trim() : syn.slice(0, 2000)) + "\n"); }
+	if (syn) {
+		lines.push("## Executive Summary\n");
+		const m = syn.match(/## Executive Summary\n([\s\S]*?)(?=\n## |$)/);
+		if (m) {
+			lines.push(m[1].trim() + "\n");
+		} else {
+			// Synthesis didn't follow expected structure — skip the summary section
+			// to avoid dumping raw internal thoughts into the report header.
+			// The full output is still included in the Phase 3 section below.
+			lines.push("(Synthesis did not produce a structured summary. See Phase 3 below for full output.)\n");
+		}
+	}
 	lines.push("---\n## Phase 1: Individual Analysis\n");
 	for (const r of p1) lines.push(`### ${r.role.emoji} ${r.role.name}${r.error ? ` ⚠️ (${r.error})` : ` ✓ (${r.turns} turns, ${formatDuration(r.durationMs)})`}\n${r.output || "(no output)"}\n`);
 	if (cm) lines.push("---\n## Phase 2: Critical Review (Clear Mind)\n" + cm + "\n");
