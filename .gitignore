@@ -7,3 +7,6 @@ helix/.config/helix/grammars
 helix/.config/helix/runtime
 helix/.config/helix/queries
 helix/.config/helix/tutor
+pi/.pi/agent/sessions
+pi/.pi/agent/auth.json
+pi/.pi/agent/pi-crash.log

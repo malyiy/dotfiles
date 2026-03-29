@@ -9,3 +9,6 @@
 --ignore=zed/.config/conversations/*
 --ignore=zed/.config/prompts/*
 --ignore=.githooks
+--ignore=pi/.pi/agent/sessions
+--ignore=pi/.pi/agent/auth.json
+--ignore=pi/.pi/agent/pi-crash.log
