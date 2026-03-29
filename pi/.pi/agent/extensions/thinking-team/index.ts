@@ -242,11 +242,13 @@ async function runSubAgent(
 ): Promise<AgentResult> {
 	const start = Date.now();
 	const promptTmp = await writeTempFile(`prompt-${role.id}`, fullPrompt);
+	let sysTmpDir: string | undefined;
 	try {
 		const args: string[] = ["--mode", "json", "-p", "--no-session"];
 		if (model) args.push("--model", model);
 		if (role.systemPrompt.trim()) {
 			const sysTmp = await writeTempFile(`sys-${role.id}`, role.systemPrompt);
+			sysTmpDir = sysTmp.dir;
 			args.push("--append-system-prompt", sysTmp.file);
 		}
 		args.push(role.tools.trim() ? `--tools=${role.tools}` : "--no-tools");
@@ -261,6 +263,7 @@ async function runSubAgent(
 		};
 	} finally {
 		cleanupTempDir(promptTmp.dir);
+		if (sysTmpDir) cleanupTempDir(sysTmpDir);
 	}
 }
 
