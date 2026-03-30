@@ -18,7 +18,7 @@ alias ....="cd ../../.."
 alias v="nvim"
 alias lg="lazygit"
 alias cc="claude"
-alias ccd="claude --dangerously-skip-permissions"
+alias ccd="claude --dangerously-skip-permissions --chrome"
 alias x="hx"
 
 ## Utils
