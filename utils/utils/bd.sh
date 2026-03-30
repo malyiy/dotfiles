@@ -1,7 +1,16 @@
 #!/bin/bash
 
-# Brew uninstall with tracking
+# Brew uninstall with tracking via Brewfile
 # Usage: bd <package-name>
+
+BREWFILE="$HOME/dotfiles/Brewfile"
+
+# Colors
+GREEN='\033[0;32m'
+RED='\033[0;31m'
+YELLOW='\033[1;33m'
+CYAN='\033[0;36m'
+NC='\033[0m'
 
 if [ -z "$1" ]; then
     echo "Usage: bd <package-name>"
@@ -9,18 +18,6 @@ if [ -z "$1" ]; then
 fi
 
 package="$1"
-packages_file="$HOME/dotfiles/brew.packages"
-casks_file="$HOME/dotfiles/brew.casks"
-
-# Determine where it's tracked
-in_packages=false
-in_casks=false
-if grep -q "\b$package\b" "$packages_file" 2>/dev/null; then
-    in_packages=true
-fi
-if grep -q "\b$package\b" "$casks_file" 2>/dev/null; then
-    in_casks=true
-fi
 
 # Check if package is installed
 is_cask_installed=false
@@ -33,74 +30,62 @@ if brew list "$package" &>/dev/null; then
 fi
 
 if [[ "$is_formula_installed" == false && "$is_cask_installed" == false ]]; then
-    echo "✗ Package '$package' is not installed"
+    echo -e "${RED}✗ Package '$package' is not installed${NC}"
     exit 1
 fi
 
-# Show package info
-echo "Package '$package' is currently installed"
-if [[ "$is_cask_installed" == true ]]; then
-    brew info --cask "$package" 2>/dev/null
-else
-    brew info "$package" 2>/dev/null
+# Find entry in Brewfile
+brewfile_entry=""
+if grep -q "^brew \"${package}\"" "$BREWFILE" 2>/dev/null; then
+    brewfile_entry="brew \"${package}\""
+elif grep -q "^cask \"${package}\"" "$BREWFILE" 2>/dev/null; then
+    brewfile_entry="cask \"${package}\""
 fi
+
+# Show info
+echo "Package '$package' is currently installed"
 echo ""
 
 # Uninstall
 echo "Uninstalling '$package'..."
 if [[ "$is_cask_installed" == true ]]; then
     if ! brew uninstall --cask "$package"; then
-        echo "✗ Failed to uninstall '$package'"
+        echo -e "${RED}✗ Failed to uninstall '$package'${NC}"
         exit 1
     fi
-elif [[ "$is_formula_installed" == true ]]; then
+else
     if ! brew uninstall "$package"; then
-        echo "✗ Failed to uninstall '$package'"
+        echo -e "${RED}✗ Failed to uninstall '$package'${NC}"
         exit 1
     fi
 fi
-
-echo "✓ Successfully uninstalled '$package'"
+echo -e "${GREEN}✓ Uninstalled '$package'${NC}"
 echo ""
 
-# Remove from tracking file
-remove_from_file() {
-    local file="$1"
-    local label="$2"
-
-    echo -n "Remove '$package' from $label? (y/n): "
+# Remove from Brewfile
+if [[ -n "$brewfile_entry" ]]; then
+    echo -n "Remove '$package' from Brewfile? (y/n): "
     read -r response
-
     if [[ "$response" =~ ^[Yy]$ ]]; then
-        current_content=$(cat "$file")
-        new_content=$(echo "$current_content" | sed "s/\b$package\b//g" | sed 's/  */ /g' | sed 's/^ //;s/ $//')
-        echo "$new_content" > "$file"
-        echo "✓ Removed '$package' from $label"
-
+        # Remove the exact line (handles both brew and cask entries)
+        sed -i '' "/^$(echo "$brewfile_entry" | sed 's/[\/&]/\\&/g')$/d" "$BREWFILE"
+        echo -e "${GREEN}✓ Removed '$package' from Brewfile${NC}"
         echo ""
-        echo "Committing changes to git..."
+
+        # Git commit
         cd "$HOME/dotfiles" || exit 1
-        git add "$(basename "$file")"
-        if git commit -m "Removed from $label: ${package}"; then
-            echo "✓ Changes committed"
-            echo "Pushing to remote..."
+        git add Brewfile
+        if git commit -m "Removed from Brewfile: ${package}"; then
+            echo -e "${GREEN}✓ Changes committed${NC}"
             if git push; then
-                echo "✓ Successfully pushed to remote"
+                echo -e "${GREEN}✓ Pushed to remote${NC}"
             else
-                echo "✗ Warning: Failed to push. You may need to push manually."
+                echo -e "${YELLOW}⚠ Failed to push. Push manually.${NC}"
             fi
-        else
-            echo "✗ Warning: Failed to commit. You may need to commit manually."
         fi
     else
-        echo "Package removed from system but kept in $label"
+        echo "Package removed from system but kept in Brewfile"
     fi
-}
-
-if [[ "$in_casks" == true ]]; then
-    remove_from_file "$casks_file" "brew.casks"
-elif [[ "$in_packages" == true ]]; then
-    remove_from_file "$packages_file" "brew.packages"
 else
-    echo "ℹ Package '$package' was not tracked in brew.packages or brew.casks"
+    echo -e "${YELLOW}ℹ Package '$package' was not tracked in Brewfile${NC}"
 fi

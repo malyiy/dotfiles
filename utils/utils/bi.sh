@@ -1,117 +1,92 @@
 #!/bin/bash
 
-# Brew install with tracking
+# Brew install with tracking via Brewfile
 # Usage:
-#   bi              - Install all packages from brew.packages and brew.casks
+#   bi              - Install all packages from Brewfile
 #   bi <package>    - Install a package (auto-detects cask vs formula)
 #   bi -f <package> - Force install as formula (skip cask detection)
 
-packages_file="$HOME/dotfiles/brew.packages"
-casks_file="$HOME/dotfiles/brew.casks"
+BREWFILE="$HOME/dotfiles/Brewfile"
 
-# Function to install all packages
-install_all() {
-    echo "=== Installing all packages ==="
-    echo ""
+# Colors
+GREEN='\033[0;32m'
+RED='\033[0;31m'
+YELLOW='\033[1;33m'
+CYAN='\033[0;36m'
+NC='\033[0m'
 
-    installed_count=0
-    skipped_count=0
-    failed_count=0
-
-    # Install formulae
-    if [[ -f "$packages_file" ]]; then
-        formulae=$(cat "$packages_file")
-        echo "--- Formulae ---"
-        for package in $formulae; do
-            if brew list "$package" &>/dev/null; then
-                echo "⊘ Skipping $package (already installed)"
-                ((skipped_count++))
-            else
-                echo "→ Installing $package..."
-                if brew install "$package"; then
-                    echo "✓ Installed $package"
-                    ((installed_count++))
-                else
-                    echo "✗ Failed to install $package"
-                    ((failed_count++))
-                fi
-            fi
-        done
-    fi
-
-    echo ""
-
-    # Install casks
-    if [[ -f "$casks_file" ]]; then
-        casks=$(cat "$casks_file")
-        echo "--- Casks ---"
-        for package in $casks; do
-            if brew list --cask "$package" &>/dev/null; then
-                echo "⊘ Skipping $package (already installed)"
-                ((skipped_count++))
-            else
-                echo "→ Installing $package (cask)..."
-                if brew install --cask "$package"; then
-                    echo "✓ Installed $package"
-                    ((installed_count++))
-                else
-                    echo "✗ Failed to install $package"
-                    ((failed_count++))
-                fi
-            fi
-        done
-    fi
-
-    echo ""
-    echo "Summary: $installed_count installed, $skipped_count skipped, $failed_count failed"
-}
-
-# Function to add a package to a tracking file
-track_package() {
-    local package="$1"
-    local file="$2"
-    local label="$3"
-
-    # Check if already tracked in this file
-    if grep -q "\b$package\b" "$file"; then
-        echo "ℹ Package '$package' is already tracked in $label"
+# Git commit and push changes to Brewfile
+git_commit() {
+    local msg="$1"
+    cd "$HOME/dotfiles" || return 1
+    if git diff --quiet -- Brewfile 2>/dev/null && ! git diff --cached --quiet -- Brewfile 2>/dev/null; then
+        : # staged but not in diff, ok
+    elif git diff --quiet -- Brewfile 2>/dev/null; then
+        echo -e "${YELLOW}No changes to commit${NC}"
         return
     fi
-
-    echo -n "Add '$package' to $label? (y/n): "
-    read -r response
-
-    if [[ "$response" =~ ^[Yy]$ ]]; then
-        current_content=$(cat "$file")
-        echo "${current_content% } $package" > "$file"
-        echo "✓ Added '$package' to $label"
-
-        echo ""
-        echo "Committing changes to git..."
-        cd "$HOME/dotfiles" || exit 1
-        git add "$(basename "$file")"
-        if git commit -m "Added to $label: ${package}"; then
-            echo "✓ Changes committed"
-            echo "Pushing to remote..."
-            if git push; then
-                echo "✓ Successfully pushed to remote"
-            else
-                echo "✗ Warning: Failed to push. You may need to push manually."
-            fi
+    git add Brewfile
+    if git commit -m "$msg"; then
+        echo -e "${GREEN}✓ Changes committed${NC}"
+        echo "Pushing to remote..."
+        if git push; then
+            echo -e "${GREEN}✓ Pushed to remote${NC}"
         else
-            echo "✗ Warning: Failed to commit. You may need to commit manually."
+            echo -e "${RED}✗ Warning: Failed to push. Push manually.${NC}"
         fi
     else
-        echo "Package installed but not added to $label"
+        echo -e "${RED}✗ Warning: Failed to commit. Commit manually.${NC}"
     fi
 }
 
-# Function to install a specific package
+# Check if a package entry exists in Brewfile
+in_brewfile() {
+    local pkg="$1"
+    grep -qE "^brew \"${pkg}\"$|^cask \"${pkg}\"$" "$BREWFILE" 2>/dev/null
+}
+
+# Add entry to Brewfile
+add_to_brewfile() {
+    local entry="$1"  # 'brew "name"' or 'cask "name"'
+    local pkg="$2"
+
+    if in_brewfile "$pkg"; then
+        echo -e "${GREEN}✓ '$pkg' is already tracked in Brewfile${NC}"
+        return 0
+    fi
+
+    echo -e "Add ${CYAN}$entry${NC} to Brewfile? (y/n): "
+    read -r response
+    if [[ "$response" =~ ^[Yy]$ ]]; then
+        # Insert before the section marker (avoids duplicating after every line)
+        if [[ "$entry" == cask* ]]; then
+            sed -i '' "/^# Cargo/i\\
+${entry}
+" "$BREWFILE"
+        elif [[ "$entry" == brew* ]]; then
+            sed -i '' "/^# Casks/i\\
+${entry}
+" "$BREWFILE"
+        fi
+        echo -e "${GREEN}✓ Added '$entry' to Brewfile${NC}"
+        git_commit "Added: $pkg"
+    else
+        echo "Package installed but not added to Brewfile"
+    fi
+}
+
+# Install all packages from Brewfile
+install_all() {
+    echo -e "${CYAN}=== Installing all packages from Brewfile ===${NC}"
+    echo ""
+    brew bundle install --no-upgrade --file="$BREWFILE"
+}
+
+# Install a specific package
 install_package() {
     local force_formula=false
     local package
 
-    # Parse flags
     if [[ "$1" == "-f" ]]; then
         force_formula=true
         package="$2"
@@ -123,13 +98,27 @@ install_package() {
         package="$1"
     fi
 
+    if [[ -z "$package" ]]; then
+        echo "Usage: bi <package-name>"
+        exit 1
+    fi
+
     # Check if already installed
     if brew list "$package" &>/dev/null || brew list --cask "$package" &>/dev/null; then
-        echo "✓ Package '$package' is already installed"
+        if in_brewfile "$package"; then
+            echo -e "${GREEN}✓ '$package' is already installed and tracked in Brewfile${NC}"
+            exit 0
+        fi
+        echo -e "${YELLOW}ℹ '$package' is installed but not tracked in Brewfile${NC}"
+        local entry_type="brew"
+        if ! $force_formula && brew info --cask "$package" &>/dev/null; then
+            entry_type="cask"
+        fi
+        add_to_brewfile "${entry_type} \"${package}\"" "$package"
         exit 0
     fi
 
-    # Determine if cask or formula
+    # Auto-detect cask vs formula
     local is_cask=false
     if [[ "$force_formula" == false ]]; then
         if brew info --cask "$package" &>/dev/null; then
@@ -140,32 +129,22 @@ install_package() {
     # Check availability
     if [[ "$is_cask" == false ]]; then
         if ! brew info "$package" &>/dev/null; then
-            echo "✗ Package '$package' not found in Homebrew"
+            echo -e "${RED}✗ Package '$package' not found in Homebrew${NC}"
             brew search "$package"
             exit 1
         fi
     fi
 
-    # Show info and install
+    # Install
     if [[ "$is_cask" == true ]]; then
         brew info --cask "$package"
         echo ""
         echo "Installing '$package' as cask..."
         if brew install --cask "$package"; then
-            echo "✓ Successfully installed '$package' (cask)"
-            echo ""
-
-            # Remove from the other file if tracked there
-            if grep -q "\b$package\b" "$packages_file"; then
-                current=$(cat "$packages_file")
-                new=$(echo "$current" | sed "s/\b$package\b//g" | sed 's/  */ /g' | sed 's/^ //;s/ $//')
-                echo "$new" > "$packages_file"
-                echo "ℹ Moved '$package' from brew.packages"
-            fi
-
-            track_package "$package" "$casks_file" "brew.casks"
+            echo -e "${GREEN}✓ Installed '$package' (cask)${NC}"
+            add_to_brewfile "cask \"${package}\"" "$package"
         else
-            echo "✗ Failed to install '$package'"
+            echo -e "${RED}✗ Failed to install '$package'${NC}"
             exit 1
         fi
     else
@@ -173,26 +152,16 @@ install_package() {
         echo ""
         echo "Installing '$package'..."
         if brew install "$package"; then
-            echo "✓ Successfully installed '$package'"
-            echo ""
-
-            # Remove from the other file if tracked there
-            if grep -q "\b$package\b" "$casks_file"; then
-                current=$(cat "$casks_file")
-                new=$(echo "$current" | sed "s/\b$package\b//g" | sed 's/  */ /g' | sed 's/^ //;s/ $//')
-                echo "$new" > "$casks_file"
-                echo "ℹ Moved '$package' from brew.casks"
-            fi
-
-            track_package "$package" "$packages_file" "brew.packages"
+            echo -e "${GREEN}✓ Installed '$package'${NC}"
+            add_to_brewfile "brew \"${package}\"" "$package"
         else
-            echo "✗ Failed to install '$package'"
+            echo -e "${RED}✗ Failed to install '$package'${NC}"
             exit 1
         fi
     fi
 }
 
-# Main logic
+# Main
 if [ -z "$1" ]; then
     install_all
 else

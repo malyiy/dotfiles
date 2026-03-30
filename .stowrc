@@ -1,5 +1,5 @@
 --ignore=.stowrc
---ignore=brew.packages
+--ignore=Brewfile
 --ignore=nix-darwin.deprecated
 --ignore=DS_Store
 --ignore=init.sh

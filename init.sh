@@ -25,41 +25,15 @@ fi
 
 echo ""
 
-# 2. Install packages from brew.packages
-echo "[2/3] Installing Homebrew packages..."
-if [[ ! -f "brew.packages" ]]; then
-    echo "✗ Error: brew.packages file not found"
+# 2. Install packages from Brewfile
+echo "[2/3] Installing Homebrew packages from Brewfile..."
+if [[ ! -f "Brewfile" ]]; then
+    echo "✗ Error: Brewfile not found"
     exit 1
 fi
 
-# Read packages from file and install
-packages=$(cat brew.packages)
-echo "Installing packages: $packages"
-echo ""
+brew bundle install --file=Brewfile
 
-# Install packages one by one, skipping already installed ones
-installed_count=0
-skipped_count=0
-failed_count=0
-
-for package in $packages; do
-    if brew list "$package" &>/dev/null || brew list --cask "$package" &>/dev/null; then
-        echo "⊘ Skipping $package (already installed)"
-        ((skipped_count++))
-    else
-        echo "→ Installing $package..."
-        if brew install "$package" 2>/dev/null || brew install --cask "$package" 2>/dev/null; then
-            echo "✓ Installed $package"
-            ((installed_count++))
-        else
-            echo "✗ Failed to install $package"
-            ((failed_count++))
-        fi
-    fi
-done
-
-echo ""
-echo "Summary: $installed_count installed, $skipped_count skipped, $failed_count failed"
 echo ""
 
 # 3. Create symlinks with stow

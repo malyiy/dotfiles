@@ -8,6 +8,13 @@ This is a personal dotfiles repository for macOS, managed using GNU Stow for sym
 
 ## Key Commands
 
+### Package Management
+- `bi` — Install all packages from Brewfile, or `bi <pkg>` to install + track a specific package
+- `bd <pkg>` — Uninstall a package and remove from Brewfile
+- `checkinstalled` — Verify all Brewfile packages are installed
+- `brewdump` — Full-state dump to `Brewfile.full` for audit
+- Brewfile (`~/dotfiles/Brewfile`) contains curated taps, formulae, casks, and cargo entries
+
 ### Dotfile Management
 - `stow <package>` - Create symlinks for a specific package (e.g., `stow nvim`, `stow zed`)
 - `stow */` - Stow all packages at once
@@ -55,10 +62,11 @@ The repository separates concerns:
 
 ### Development Environment
 - **Primary Editor**: Zed
-- **Terminal**: Warp
-- **Version Control**: Git with lazygit and delta diff viewer
+- **Terminal**: Ghostty
+- **Version Control**: Git with lazygit and git-delta diff viewer
 - **Languages**: Node.js (nvm), Ruby (rbenv), Bun
 - **Mobile Development**: Android SDK, React Native utilities
+- **Package Management**: Homebrew with Brewfile (`brew bundle`)
 - **Git Workflow**: Conditional config for work projects in ~/work_station/work/
 
 ## Environment Details
@@ -88,6 +96,13 @@ The repository separates concerns:
 - React Editor: Zed (for React Native development)
 
 ## Making Changes
+
+### Homebrew Package Management
+- `Brewfile` at repo root tracks intentionally installed packages (taps, leaves, casks, cargo)
+- `bi <pkg>` installs + auto-detects cask vs formula + appends to Brewfile + git commits
+- `bd <pkg>` uninstalls + removes from Brewfile + git commits
+- `checkinstalled` runs `brew bundle check`
+- Do NOT use `brew bundle dump` to overwrite the curated Brewfile — it includes ~50 transitive deps
 
 ### Adding a New Package
 1. Create directory: `mkdir -p <package>/.config/<package>`
