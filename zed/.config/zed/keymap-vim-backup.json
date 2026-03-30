@@ -1,0 +1,63 @@
+[
+	{
+		"context": "Editor && VimControl && !VimWaiting && !menu",
+		"bindings": {
+			// put key-bindings here if you want them to work in normal & visual mode
+		},
+	},
+	{
+		"context": "Editor && vim_mode == normal && !VimWaiting && !menu",
+		"bindings": {
+			"shift-l": "pane::ActivateNextItem",
+			"shift-h": "pane::ActivatePreviousItem",
+			"g e": "project_panel::ToggleFocus",
+			"g c c": "editor::ToggleComments",
+			"space a": "agent::ToggleFocus",
+			"space t": "task::Spawn",
+			"cmd-g": "editor::ToggleCodeActions",
+		},
+	},
+	{
+		"context": "Editor && vim_mode == visual && !VimWaiting && !menu",
+		"bindings": {
+			"shift-l": "vim::EndOfLine",
+			"shift-h": "vim::StartOfLine",
+		},
+	},
+	{
+		"context": "Editor && vim_mode == insert && !menu",
+		"bindings": {
+			"cmd-g": "editor::ShowCompletions",
+		},
+	},
+	{
+		"context": "((Workspace && !vim_mode) || (Editor && vim_mode == normal)) && !CommandPalette && !FileFinder && !Terminal && !InlineAssistEditor",
+		"bindings": {
+			// "a s d k": "dev::OpenKeyContextView",
+			"shift shift": "tab_switcher::ToggleAll",
+			"space l": "workspace::ToggleRightDock",
+			"space h": "workspace::ToggleLeftDock",
+			"space j": "workspace::ToggleBottomDock",
+			"space x": "workspace::CloseAllDocks",
+		},
+	},
+	{
+		"context": "(VimControl && !menu)",
+		"bindings": {
+			"g r": "editor::FindAllReferences",
+		},
+	},
+	{
+		"context": "vim_mode == normal || vim_mode == visual",
+		"bindings": {
+			"s": "vim::PushSneak",
+			"shift-s": "vim::PushSneakBackward",
+		},
+	},
+	{
+		"context": "Workspace",
+		"bindings": {
+			"cmd-k": null,
+		},
+	},
+]
