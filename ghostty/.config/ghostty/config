@@ -9,6 +9,8 @@ window-padding-y = 10
 background-opacity = 0.95
 background-blur-radius = 20
 
+macos-option-as-alt = true
+
 # --- Vim-Style Split Navigation ---
 # We use 'opt' (Option/Alt) to avoid breaking <C-w> inside Vim.
 # keybind = opt+h=goto_split:left
