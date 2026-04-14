@@ -11,17 +11,17 @@ background-blur-radius = 20
 
 # --- Vim-Style Split Navigation ---
 # We use 'opt' (Option/Alt) to avoid breaking <C-w> inside Vim.
-keybind = opt+h=goto_split:left
-keybind = opt+j=goto_split:down
-keybind = opt+k=goto_split:up
-keybind = opt+l=goto_split:right
+# keybind = opt+h=goto_split:left
+# keybind = opt+j=goto_split:down
+# keybind = opt+k=goto_split:up
+# keybind = opt+l=goto_split:right
 
 # --- Vim-Style Split Creation ---
 # 's' for split (horizontal), 'v' for vsplit (vertical)
 # This mimics :sp and :vsp behavior from Vim
-keybind = opt+s=new_split:down
-keybind = opt+v=new_split:right
-keybind = opt+n=equalize_splits
+# keybind = opt+s=new_split:down
+# keybind = opt+v=new_split:right
+# keybind = opt+n=equalize_splits
 
 # --- Tab Management ---
 keybind = cmd+t=new_tab
@@ -32,7 +32,7 @@ keybind = cmd+shift+l=next_tab
 
 # --- Zoom Feature ---
 # Like tmux 'z' - zooms the current split to full size and back
-keybind = opt+z=toggle_split_zoom
+# keybind = opt+z=toggle_split_zoom
 
 # --- Font Settings ---
 # Ghostty detects your installed fonts. JetBrains Mono is great for coding.
