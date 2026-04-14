@@ -53,6 +53,7 @@ brew "yazi"
 brew "zoxide"
 brew "zsh-autosuggestions"
 
+brew "tinymist"
 # Casks
 cask "aldente"
 cask "docker-desktop"
