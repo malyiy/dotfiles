@@ -68,6 +68,7 @@ cask "shortcat"
 cask "warp"
 cask "zed"
 
+cask "qlmarkdown"
 # Cargo
 unless `scutil --get LocalHostName`.strip == "DarkWolf"
   cargo "cargo-espflash"
