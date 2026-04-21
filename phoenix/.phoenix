@@ -58,6 +58,7 @@ lg()  { __run lg lazygit "$@"; }
 cc()  { __run cc claude "$@"; }
 ccd() { __run ccd claude --dangerously-skip-permissions --chrome "$@"; }
 x()   { __run x hx "$@"; }
+ql()  { __run ql qlmanage -p "$@"; }
 
 ## Utils
 yrid()           { __run yrid ~/utils/build-react-native-for-my-iphone.sh "$@"; }
