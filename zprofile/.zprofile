@@ -40,6 +40,8 @@ export PATH=~/.npm-global/bin:$PATH
 
 eval "$(zoxide init zsh)"
 
+source <(fzf --zsh)
+
 [ -f ~/dotfiles/.env ] && source ~/dotfiles/.env
 
 function glm() {
