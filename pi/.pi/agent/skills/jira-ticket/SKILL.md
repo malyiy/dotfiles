@@ -40,69 +40,77 @@ Follow these phases strictly. **NEVER generate a ticket on the first response.**
 
 5. Wait for the user's answers before proceeding.
 
-### Phase 2: Draft
+### Phase 2: Research (Web Search)
+
+1. Before drafting the ticket, search the web for relevant information about the topic.
+2. This is especially important for Research tickets, but applies to Task tickets too — the research phase items should be grounded in real context.
+3. Use web search to:
+   - Gather foundational knowledge about tools, technologies, or concepts mentioned in the task
+   - Find current best practices, alternatives, or relevant documentation
+   - Validate assumptions and add concrete details to the ticket
+4. Incorporate the findings into the ticket draft — populate descriptions, research scope, and acceptance criteria with real, accurate information when applicable.
+5. If the web search doesn't return useful results for a given topic, skip it and rely on the user's input.
+
+### Phase 3: Draft
 
 1. Generate the ticket using the appropriate template (see below).
-2. Present the full ticket inside a fenced markdown code block for easy copy-paste.
-3. After the draft, ask: **"Want any changes, or is this ready to go?"**
+2. Use plain text only — no markdown formatting (no bold, no headers, no code blocks for the ticket content itself).
+3. Present the full ticket as plain text for easy copy-paste into Jira.
+4. After the draft, ask: "Want any changes, or is this ready to go?"
 
-### Phase 3: Refine & Finalize
+### Phase 4: Refine & Finalize
 
-1. If the user requests changes, apply them and show the updated draft in a code block.
+1. If the user requests changes, apply them and show the updated draft as plain text.
 2. Repeat until the user confirms.
-3. On confirmation, output the final clean version in a code block with a brief note that it's ready to paste into Jira.
+3. On confirmation, output the final clean plain text version with a brief note that it's ready to paste into Jira.
 
 ## Ticket Templates
 
 ### Task
 
-```
-**Type:** Task
+Type: Task
 
-**Title:** [Clear, concise title — action-oriented]
+Title: [Clear, concise title — action-oriented]
 
-**Description:**
+Description:
 
 This ticket covers [concise description of what needs to be done].
 
-**Research phase:**
+Research phase:
 - [ ] [Specific research item relevant to the task]
 - [ ] [Another research item if applicable]
 - [ ] Document findings before proceeding with implementation
 
-**Implementation:**
+Implementation:
 - [ ] [Implementation step 1]
 - [ ] [Implementation step 2]
 - [ ] [Additional steps as needed]
 
-**Acceptance Criteria:**
+Acceptance Criteria:
 - [ ] Research phase completed and documented
 - [ ] [Specific deliverable or outcome]
 - [ ] [Another deliverable if applicable]
 - [ ] Documentation created in the repository
-```
 
 ### Research
 
-```
-**Type:** Research
+Type: Research
 
-**Title:** [Research] [Clear topic or question being investigated]
+Title: [Research] [Clear topic or question being investigated]
 
-**Description:**
+Description:
 
 This ticket covers research into [topic]. [1–3 sentences describing what needs to be investigated and what the expected output is.]
 
-**Research scope:**
+Research scope:
 - [ ] [Specific question or area to investigate]
 - [ ] [Another area if applicable]
 - [ ] [Comparison or evaluation criteria if relevant]
 
-**Acceptance Criteria:**
+Acceptance Criteria:
 - [ ] Research documentation created in the repository
 - [ ] TL;DR summary shared in AI Team chat
 - [ ] 2–5 min demo call conducted with the team
-```
 
 ## Documentation Standard
 
@@ -125,6 +133,7 @@ This structure ensures consistent, useful documentation across all AI Team resea
 - **No Technical Approach section** — that's for the researcher/implementer to determine.
 - **No labels, tags, or story points.**
 - **Research phase is always included** in Task tickets as the first phase.
-- **Output format:** Markdown — compatible with Jira's modern editor. Use checkboxes (`- [ ]`), bold, and headers.
+- **Output format:** Plain text only. No markdown formatting — no bold, no headers, no code fences. Use plain colons, dashes, and checkboxes (`- [ ]`).
 - **Keep it scannable:** developers should grasp the ticket in 30 seconds.
+- **Web search:** Always search the web for relevant information before drafting the ticket. Use findings to make the ticket concrete and informed.
 - When in doubt about scope or complexity, suggest splitting into multiple tickets but default to a single ticket unless the user agrees.
