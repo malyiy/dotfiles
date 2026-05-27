@@ -1,6 +1,9 @@
 {
-  "lastChangelogVersion": "0.72.1",
+  "lastChangelogVersion": "0.75.4",
   "defaultProvider": "zai",
   "defaultModel": "glm-5.1",
-  "defaultThinkingLevel": "high"
+  "defaultThinkingLevel": "high",
+  "packages": [
+    "npm:pi-chime"
+  ]
 }
