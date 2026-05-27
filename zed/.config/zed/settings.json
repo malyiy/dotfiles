@@ -8,6 +8,8 @@
 // from the command palette or from Zed application menu.
 {
 	// Theme & Appearance
+	"base_keymap": "JetBrains",
+ "cli_default_open_behavior": "existing_window",
 	"debugger": {
 		"dock": "left",
 	},
@@ -16,9 +18,11 @@
 		"provider": "zed",
 	},
 	"agent_servers": {
-		"claude-acp": {
+		"pi-acp": {
 			"type": "registry",
-			"default_mode": "bypassPermissions",
+		},
+		"glm-acp-agent": {
+			"type": "registry",
 		},
 	},
 	"which_key": {
@@ -26,7 +30,8 @@
 		"enabled": true,
 	},
 	"git_panel": {
-		"tree_view": false,
+		"dock": "right",
+  "tree_view": false,
 	},
 	"hard_tabs": true,
 	"colorize_brackets": true,
@@ -43,7 +48,6 @@
 	"buffer_font_size": 12,
 	"buffer_font_weight": 620,
 	// Editor Behavior
-	"base_keymap": "JetBrains",
 	"vim_mode": false,
 	"autosave": "on_focus_change",
 	"confirm_quit": true,
@@ -53,6 +57,25 @@
 	// AI & Language Models
 	"language_models": {
 		"openai_compatible": {
+			"dgx": {
+				"api_url": "http://labforty-dgx:8000/v1",
+				"available_models": [
+					{
+						"name": "Qwen/Qwen3.6-27B-FP8",
+						"max_tokens": 262144,
+						"max_output_tokens": 32000,
+						"max_completion_tokens": 200000,
+						"capabilities": {
+							"tools": true,
+							"images": false,
+							"parallel_tool_calls": false,
+							"prompt_cache_key": false,
+							"chat_completions": true,
+							"interleaved_reasoning": false,
+						},
+					},
+				],
+			},
 			"Z.AI": {
 				"api_url": "https://api.z.ai/api/coding/paas/v4",
 				"available_models": [
@@ -74,13 +97,15 @@
 		"ollama": {},
 	},
 	"agent": {
-		"inline_alternatives": [],
-		"play_sound_when_agent_done": true,
+		"dock": "left",
+  "inline_alternatives": [],
+		"play_sound_when_agent_done": "always",
 		"use_modifier_to_send": true,
 		"default_profile": "write",
 		"default_model": {
-			"provider": "Z.AI",
-			"model": "glm-4.7",
+			"enable_thinking": false,
+			"provider": "dgx",
+			"model": "Qwen/Qwen3.6-27B-FP8",
 		},
 	},
 	// Language Settings
@@ -123,16 +148,14 @@
 		"dock": "right",
 	},
 	"outline_panel": {
-		"dock": "left",
+		"dock": "right",
 	},
 	"collaboration_panel": {
-		"button": false,
+		"dock": "right",
+  "button": false,
 	},
 	"terminal": {
-		"shell": {
-			"program": "fish",
-		},
-		"dock": "left",
+		"dock": "bottom",
 		"working_directory": "current_project_directory",
 		"font_family": "JetBrainsMonoNL Nerd Font",
 		"blinking": "terminal_controlled",
