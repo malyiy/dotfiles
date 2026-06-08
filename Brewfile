@@ -70,6 +70,7 @@ cask "warp"
 cask "zed"
 
 cask "qlmarkdown"
+cask "codex"
 # Cargo
 unless `scutil --get LocalHostName`.strip == "DarkWolf"
   cargo "cargo-espflash"
