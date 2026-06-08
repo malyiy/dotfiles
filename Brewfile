@@ -54,6 +54,7 @@ brew "zoxide"
 brew "zsh-autosuggestions"
 
 brew "herdr"
+brew "hf"
 # Casks
 cask "aldente"
 cask "docker-desktop"
