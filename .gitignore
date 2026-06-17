@@ -10,3 +10,13 @@ helix/.config/helix/tutor
 pi/.pi/agent/sessions
 pi/.pi/agent/auth.json
 pi/.pi/agent/pi-crash.log
+
+# Codex local state; track only config.toml, rules, and custom skills.
+codex/.codex/*
+!codex/.codex/config.toml
+!codex/.codex/rules/
+!codex/.codex/rules/**
+!codex/.codex/skills/
+!codex/.codex/skills/**
+codex/.codex/skills/.system/
+codex/.codex/skills/**/__pycache__/

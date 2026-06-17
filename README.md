@@ -57,6 +57,7 @@ stow myapp
 
 ```
 dotfiles/
+├── codex/         # Codex config, rules, and custom skills
 ├── gitconfig/      # Git config with delta diff viewer
 ├── nvim/           # Neovim LazyVim config
 ├── phoenix/        # Shell aliases (.phoenix)

@@ -39,6 +39,7 @@ This is a personal dotfiles repository for macOS, managed using GNU Stow for sym
 ### Stow-Based Package Structure
 
 Each top-level directory is a "package" that mirrors the home directory structure:
+- **codex/** - Codex CLI/app config, rules, and custom skills; excludes auth, logs, sessions, caches, and bundled system skills
 - **gitconfig/** - Git configuration with delta diff viewer, includes work-specific config
 - **nvim/** - Neovim LazyVim configuration
 - **phoenix/** - Shell aliases and custom commands (sourced by .zprofile)

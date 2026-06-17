@@ -1,0 +1,4 @@
+interface:
+  display_name: "Jira Ticket Fetch"
+  short_description: "Fetch Jira issue details securely"
+  default_prompt: "Use $jira-ticket-fetch to fetch and summarize a Jira ticket."
